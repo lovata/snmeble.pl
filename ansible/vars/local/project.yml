@@ -1,6 +1,7 @@
 APP_ENV: local
 APP_DEBUG: true
 DEBUGBAR_ENABLED: true
+FORCE_MAIL_SETTING: true
 APP_URL: 'http://localhost'
 BROADCAST_DRIVER: log
 CACHE_DRIVER: file
