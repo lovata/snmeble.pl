@@ -25,7 +25,7 @@ services:
             - '${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}'
             - './temp:/home/sail/temp'
         networks:
-            - frontend
+            - lovata_frontend
             - backend
         logging:
             driver: "json-file"
@@ -83,7 +83,7 @@ services:
                 max-file: "3"
 {% endif %}
 networks:
-    frontend:
-        driver: bridge
+    lovata_frontend:
+        external: true
     backend:
         driver: bridge
