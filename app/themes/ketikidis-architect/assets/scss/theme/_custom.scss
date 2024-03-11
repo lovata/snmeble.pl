@@ -1,0 +1,76 @@
+// Headlines with lines
+//
+
+.decorated {
+  overflow: hidden;
+  text-align: center;
+
+  > span {
+    position: relative;
+    display: inline-block;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      border-bottom: $border-width solid $border-color;
+      width: 100vw;
+      margin: 0 1.25rem;
+    }
+
+    &:before {
+      right: 100%;
+    }
+
+    &:after {
+      left: 100%;
+    }
+  }
+}
+
+.decorated-end {
+  overflow: hidden;
+  text-align: left;
+
+  > span {
+    position: relative;
+    display: inline-block;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      border-bottom: $border-width solid $border-color;
+      width: 100vw;
+      margin: 0 1.25rem;
+    }
+
+    &:after {
+      left: 100%;
+    }
+  }
+}
+
+.decorated-start {
+  overflow: hidden;
+  text-align: right;
+
+  > span {
+    position: relative;
+    display: inline-block;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      border-bottom: $border-width solid $border-color;
+      width: 100vw;
+      margin: 0 1.25rem;
+    }
+
+    &:before {
+      left: 100%;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+description = "Features Block"
+
+[viewBag]
+==
+<section class="{{ data.section_features_id|slug }} bg-primary-400">
+    <div class="container">
+        <div class="row d-flex g-0">
+            {% set sal = ['flip-up','flip-left','flip-down','flip-right'] %}
+            {% for feature in data.section_features %}
+            <div class="col-md-3 d-flex align-items-stretch position-relative" data-sal="{{ sal[ loop.index0 % 4 ] }}" data-sal-duration="2000">
+                {% if feature.section_feature_link is not empty %}
+                <a class="group" href="{{ feature.section_feature_clink ? feature.section_feature_clink : (feature.section_feature_plink|staticPage) }}">
+                {% endif %}
+                <div class="d-block h-100 text-center px-4 py-5 transition-30 {% if loop.first or loop.last %}bg-primary-400{% elseif loop.index == 2 %}bg-primary-600{% else %}bg-primary{% endif %} {% if feature.section_feature_link is not empty %}group-hover-bg-primary{% endif %}">
+                    <div class="d-flex justify-content-center align-items-center mx-auto w-32 h-32">
+                        <i class="text-white display-3 {{ feature.section_feature_icon }}"></i>
+                    </div>
+                    <div class="py-2 py-md-4">
+                        <h3 class="fs-5 text-white">{{ feature.section_feature_title }}</h3>
+                        <p class="text-white">{{ feature.section_feature_desc }}</p>
+                    </div>
+                </div>
+                {% if feature.section_feature_link is not empty %}
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

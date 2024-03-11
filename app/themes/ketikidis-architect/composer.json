@@ -1,0 +1,21 @@
+{
+	"name": "ketikidis/architect-theme",
+    "type": "october-theme",
+    "description": "Architect - Multipurpose Theme with Powerful Pagebuilder",
+	"keywords": [
+		"cms",
+		"pagebuilder",
+		"blocks",
+		"theme"
+	],
+	"license": "Charis Ketikidis under Regular or Extended octobercms marketplace license",
+	"authors": [
+		{
+			"name": "Charis Ketikidis",
+			"email": "charis@ketikidis.com"
+		}
+	],
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

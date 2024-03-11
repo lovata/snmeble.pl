@@ -1,0 +1,883 @@
+tabs:
+    stretch: true
+    defaultTab: General
+    icons:
+        General: icon-cog
+        Settings: icon-sliders
+        Social: icon-comments-o
+        Fonts: icon-font
+        Colors: icon-paint-brush
+        Grid: icon-th
+        Blog: icon-commenting-o
+        Advanced: icon-wrench
+    fields:
+    
+        ####################################################
+        # Tab: General
+        ####################################################
+        
+        site_section_01:
+            tab: General
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-list position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Meta Data</div></div>
+            commentHtml: true
+    
+        site_name:
+            tab: General
+            label: Website Name
+            type: text
+            default: "Architect"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        site_url:
+            tab: General
+            label: Website Url
+            type: text
+            default: "www.ketikidis.com"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        site_author:
+            tab: General
+            label: Website Author
+            type: text
+            default: "Charis Ketikidis"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        site_email:
+            tab: General
+            label: Website Email
+            type: email
+            default: "charis@ketikidis.com"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        site_description:
+            tab: General
+            label: Website Description
+            type: textarea
+            size: small
+            default: "Architect - Multipurpose Theme with Powerful Pagebuilder"
+            span: row
+            spanClass: "col-md-12 p-l-0"
+            
+        site_section_02:
+            tab: General
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-copyright position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Copyright</div></div>
+            commentHtml: true
+            
+        site_copyright:
+            tab: General
+            label: Copyright
+            type: richeditor
+            size: large
+            default: "<p>All rights reserved. Designed &amp; Developed by <a href='http://www.ketikidis.com'>ketikidis.com</a></p>"
+            span: row
+            spanClass: "col-md-12 p-l-0"
+            
+        ####################################################
+        # Tab: Settings
+        ####################################################
+            
+        site_section_03:
+            tab: Settings
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-id-card-o position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Logo - Favicon</div></div>
+            commentHtml: true
+            
+        site_logo:
+            tab: Settings
+            label: Logo Image
+            type: mediafinder
+            default: "logo.png"
+            comment: Please use transparent image
+            mode: image
+            imageHeight: 100
+            imageWidth: 250
+            span: row
+            spanClass: "col-md-4 p-l-0"
+        site_logo_footer:
+            tab: Settings
+            label: Logo Image (Footer)
+            type: mediafinder
+            default: "logo.png"
+            comment: Please use transparent image
+            mode: image
+            imageHeight: 100
+            imageWidth: 250
+            span: row
+            spanClass: "col-md-4 p-l-0"
+        site_favicon:
+            tab: Settings
+            label: Favicon Image
+            type: mediafinder
+            default: "favicon.png"
+            comment: Please use transparent image
+            mode: image
+            imageHeight: 100
+            imageWidth: 250
+            span: row
+            spanClass: "col-md-4 p-l-0"
+            
+        site_section_04:
+            tab: Settings
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-flag position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Pageheader</div></div>
+            commentHtml: true
+            
+        site_pageheader:
+            tab: Settings
+            label: Pageheader Image
+            type: mediafinder
+            default: "pageheader.jpg"
+            comment: Please use at least 1920x1080 resolution image
+            mode: image
+            imageHeight: 200
+            imageWidth: 450
+            span: row
+            spanClass: "col-md-12 p-l-0"
+            
+        site_section_05:
+            tab: Settings
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-cogs position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Translate - Search</div></div>
+            commentHtml: true
+            
+        site_translate:
+            tab: Settings
+            label: Tranlsate
+            type: switch
+            default: true
+            comment: Enable translate feature
+            span: left
+            
+        site_search:
+            tab: Settings
+            label: Search
+            type: switch
+            default: true
+            comment: Enable search feature
+            span: right
+            
+        ####################################################
+        # Tab: Social
+        ####################################################
+            
+        social_section_03:
+            tab: Social
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-comments-o position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Social Media</div></div>
+            commentHtml: true
+            
+        social_media:
+            tab: Social
+            label: Social Media
+            type: repeater
+            prompt: Add social media
+            maxItems: 6
+            form:
+                fields:
+                    social_media_name:
+                        label: Social media name
+                        placeholder: Facebook
+                        span: row
+                        spanClass: "col-md-4 p-l-0"
+                    social_media_icon:
+                        label: Social media icon
+                        placeholder: "e.g. bi bi-facebook"
+                        span: row
+                        spanClass: "col-md-4 p-l-0"
+                    social_media_url:
+                        label: Social media url
+                        placeholder: https://facebook.com/mypage
+                        span: row
+                        spanClass: "col-md-4 p-l-0"
+                        
+        ####################################################
+        # Tab: Fonts
+        ####################################################
+        
+        font_section_01:
+            tab: Fonts
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-font position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Text Font</div></div>
+            commentHtml: true
+        
+        font_text:
+            label: Text Font Family
+            tab: Fonts
+            type: text
+            default: "'Roboto', sans-serif"
+            placeholder: "Specify font family"
+            comment: "Default: 'Roboto', sans-serif"
+            assetVar: "font_text"
+            span: row
+            spanClass: "col-md-3 p-l-0"
+        font_text_size:
+            label: Text Font Size
+            tab: Fonts
+            type: text
+            default: "1rem"
+            placeholder: "Specify text size"
+            comment: "Default: 1rem"
+            assetVar: "font_text_size"
+            span: row
+            spanClass: "col-md-3 p-l-0"
+        font_text_weight:
+            label: Text Font Weight
+            tab: Fonts
+            type: text
+            default: "400"
+            placeholder: "Specify font weight"
+            comment: "Default: 400"
+            assetVar: 'font_text_weight'
+            span: row
+            spanClass: "col-md-3 p-l-0"
+        font_text_height:
+            label: Text Line Height
+            tab: Fonts
+            type: text
+            default: "1.5"
+            placeholder: "Specify font height"
+            comment: "Default: 1.5"
+            assetVar: "font_text_height"
+            span: row
+            spanClass: "col-md-3 p-l-0"
+            
+        font_section_02:
+            tab: Fonts
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-header position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Headings Font</div></div>
+            commentHtml: true
+
+        font_head:
+            label: Headings Font Family
+            tab: Fonts
+            type: text
+            default: "'Roboto', sans-serif"
+            placeholder: "Specify font family"
+            comment: "Default: 'Roboto', sans-serif"
+            assetVar: "font_head"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        font_head_weight:
+            label: Headings Font Weight
+            tab: Fonts
+            type: text
+            default: "500"
+            placeholder: "Specify font weight"
+            comment: "Default: 500"
+            assetVar: "font_head_weight"
+            span: row
+            spanClass: "col-md-3 p-l-0"
+        font_head_height:
+            label: Headings Line Height
+            tab: Fonts
+            type: text
+            default: "1.2"
+            placeholder: "Specify font height"
+            comment: "Default: 1.2"
+            assetVar: "font_head_height"
+            span: row
+            spanClass: "col-md-3 p-l-0"
+            
+        font_section_03:
+            tab: Fonts
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-google position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Google Fonts</div></div>
+            commentHtml: true
+            
+        font_gfonts:
+            tab: Fonts
+            label: Google fonts link
+            type: codeeditor
+            language: html
+            size: small
+            default: '<link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap" rel="stylesheet">'
+            comment: 'Default: <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap" rel="stylesheet">'
+            span: row
+            spanClass: "col-md-12 p-l-0"
+              
+        ####################################################
+        # Tab: Colors
+        ####################################################
+        
+        color_section_01:
+            tab: Colors
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-paint-brush position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Special Colors</div></div>
+            commentHtml: true
+
+        color_primary:
+            tab: Colors
+            label: Primary Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#8aaa73</strong>"
+            commentHtml: true
+            default: "#8aaa73"
+            assetVar: "color_primary"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_secondary:
+            tab: Colors
+            label: Secondary Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#cfcdcc</strong>"
+            commentHtml: true
+            default: "#cfcdcc"
+            assetVar: "color_secondary"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_info:
+            tab: Colors
+            label: Info Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#17a2b8</strong>"
+            commentHtml: true
+            default: "#17a2b8"
+            assetVar: "color_info"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_success:
+            tab: Colors
+            label: Success Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#28a745</strong>"
+            commentHtml: true
+            default: "#28a745"
+            assetVar: "color_success"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_danger:
+            tab: Colors
+            label: Danger Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#dc3545</strong>"
+            commentHtml: true
+            default: "#dc3545"
+            assetVar: "color_danger"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_warning:
+            tab: Colors
+            label: Warning Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#fd7e14</strong>"
+            commentHtml: true
+            default: "#fd7e14"
+            assetVar: "color_warning"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_light:
+            tab: Colors
+            label: Light Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#f8f7f7</strong>"
+            commentHtml: true
+            default: "#f8f7f7"
+            assetVar: "color_light"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_dark:
+            tab: Colors
+            label: Dark Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#0a0808</strong>"
+            commentHtml: true
+            default: "#0a0808"
+            assetVar: "color_dark"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+            
+        color_section_02:
+            tab: Colors
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-paint-brush position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Basic Colors</div></div>
+            commentHtml: true
+            
+        color_blue:
+            tab: Colors
+            label: Blue Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#007bff</strong>"
+            commentHtml: true
+            default: "#007bff"
+            assetVar: "color_blue"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_indigo:
+            tab: Colors
+            label: Indigo Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#6610f2</strong>"
+            commentHtml: true
+            default: "#6610f2"
+            assetVar: "color_indigo"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_purple:
+            tab: Colors
+            label: Purple Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#6f42c1</strong>"
+            commentHtml: true
+            default: "#6f42c1"
+            assetVar: "color_purple"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_pink:
+            tab: Colors
+            label: Pink Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#e83e8c</strong>"
+            commentHtml: true
+            default: "#e83e8c"
+            assetVar: "color_pink"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_red:
+            tab: Colors
+            label: Red Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#dc3545</strong>"
+            commentHtml: true
+            default: "#dc3545"
+            assetVar: "color_red"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_orange:
+            tab: Colors
+            label: Orange Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#fd7e14</strong>"
+            commentHtml: true
+            default: "#fd7e14"
+            assetVar: "color_orange"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_yellow:
+            tab: Colors
+            label: Yellow Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#ffc107</strong>"
+            commentHtml: true
+            default: "#ffc107"
+            assetVar: "color_yellow"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_green:
+            tab: Colors
+            label: Green Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#28a745</strong>"
+            commentHtml: true
+            default: "#28a745"
+            assetVar: "color_green"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_teal:
+            tab: Colors
+            label: Teal Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#20c997</strong>"
+            commentHtml: true
+            default: "#20c997"
+            assetVar: "color_teal"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_cyan:
+            tab: Colors
+            label: Cyan Color
+            type: colorpicker
+            availableColors: ['#1abc9c', '#16a085', '#2ecc71', '#27ae60', '#3498db', '#2980b9', '#9b59b6', '#8e44ad', '#f1c40f', '#f39c12', '#e67e22', '#d35400', '#e74c3c', '#c0392b']
+            comment: "<span>Default:</span><br><strong>#17a2b8</strong>"
+            commentHtml: true
+            default: "#17a2b8"
+            assetVar: "color_cyan"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+            
+        color_section_03:
+            tab: Colors
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-paint-brush position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Gray Colors</div></div>
+            commentHtml: true
+            
+        color_g100:
+            tab: Colors
+            label: Gray Color 100
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#f8f7f7</strong>"
+            commentHtml: true
+            default: "#f8f7f7"
+            assetVar: "color_g100"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_g200:
+            tab: Colors
+            label: Gray Color 200
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#cfcdcc</strong>"
+            commentHtml: true
+            default: "#cfcdcc"
+            assetVar: "color_g200"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_g300:
+            tab: Colors
+            label: Gray Color 300
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#ddd8d6</strong>"
+            commentHtml: true
+            default: "#ddd8d6"
+            assetVar: "color_g300"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_g400:
+            tab: Colors
+            label: Gray Color 400
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#cbc5c2</strong>"
+            commentHtml: true
+            default: "#cbc5c2"
+            assetVar: "color_g400"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_g500:
+            tab: Colors
+            label: Gray Color 500
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#bab1ad</strong>"
+            commentHtml: true
+            default: "#bab1ad"
+            assetVar: "color_g500"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_g600:
+            tab: Colors
+            label: Gray Color 600
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#8c8582</strong>"
+            commentHtml: true
+            default: "#8c8582"
+            assetVar: "color_g600"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_g700:
+            tab: Colors
+            label: Gray Color 700
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#5d5957</strong>"
+            commentHtml: true
+            default: "#5d5957"
+            assetVar: "color_g700"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_g800:
+            tab: Colors
+            label: Gray Color 800
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#2f2c2b</strong>"
+            commentHtml: true
+            default: "#2f2c2b"
+            assetVar: "color_g800"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_g900:
+            tab: Colors
+            label: Gray Color 900
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#1c1b1a</strong>"
+            commentHtml: true
+            default: "#1c1b1a"
+            assetVar: "color_g900"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+            
+        color_section_04:
+            tab: Colors
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-font position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Font Colors</div></div>
+            commentHtml: true
+            
+        color_text:
+            tab: Colors
+            label: Text Color
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#1c1b1a</strong>"
+            commentHtml: true
+            default: "#1c1b1a"
+            assetVar: "color_text"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        color_head:
+            tab: Colors
+            label: Headings Color
+            type: colorpicker
+            availableColors: ['#f8f7f7', '#e6e5e5', '#d4d3d3', '#c2c1c1', '#b1afaf', '#9f9d9d', '#8d8b8b', '#7b7a79', '#696867', '#575655', '#464443', '#343231', '#22201f', '#100e0d']
+            comment: "<span>Default:</span><br><strong>#0a0808</strong>"
+            commentHtml: true
+            default: "#0a0808"
+            assetVar: "color_head"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+            
+        ####################################################
+        # Tab: Grid
+        ####################################################
+        
+        grid_section_01:
+            tab: Grid
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-object-ungroup position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Grid Breakpoints</div></div>
+            commentHtml: true
+            
+        break_xs:
+            label: Xs Breakpoint
+            type: text
+            tab: Grid
+            default: "0"
+            assetVar: "break_xs"
+            comment: "Default: 0"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+        break_sm:
+            label: Sm Breakpoint
+            type: text
+            tab: Grid
+            default: "576px"
+            comment: "Default: 576px"
+            assetVar: "break_sm"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+        break_md:
+            label: Md Breakpoint
+            type: text
+            tab: Grid
+            default: "768px"
+            comment: "Default: 768px"
+            assetVar: "break_md"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+        break_lg:
+            label: Lg Breakpoint
+            type: text
+            tab: Grid
+            default: "992px"
+            comment: "Default: 992px"
+            assetVar: "break_lg"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+        break_xl:
+            label: Xl Breakpoint
+            type: text
+            tab: Grid
+            default: "1280px"
+            comment: "Default: 1200px"
+            assetVar: "break_xl"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+        break_xxl:
+            label: XXl Breakpoint
+            type: text
+            tab: Grid
+            default: "1400px"
+            comment: "Default: 1400px"
+            assetVar: "break_xxl"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+            
+        grid_section_02:
+            tab: Grid
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-object-group position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Grid Containers</div></div>
+            commentHtml: true
+            
+        container_sm:
+            label: Sm Container
+            type: text
+            tab: Grid
+            default: "100%"
+            comment: "Default: 540px"
+            assetVar: "container_sm"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+        container_md:
+            label: Md Container
+            type: text
+            tab: Grid
+            default: "100%"
+            comment: "Default: 720px"
+            assetVar: "container_md"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+        container_lg:
+            label: Lg Container
+            type: text
+            tab: Grid
+            default: "100%"
+            comment: "Default: 960px"
+            assetVar: "container_lg"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+        container_xl:
+            label: Xl Container
+            type: text
+            tab: Grid
+            default: "1260px"
+            comment: "Default: 1140px"
+            assetVar: "container_xl"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+        container_xxl:
+            label: XXl Container
+            type: text
+            tab: Grid
+            default: "1320px"
+            comment: "Default: 1320px"
+            assetVar: "container_xxl"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+            
+        grid_section_03:
+            tab: Grid
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-th-large position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Grid Columns</div></div>
+            commentHtml: true
+            
+        grid_columns:
+            label: Grid Columns
+            type: text
+            tab: Grid
+            default: "12"
+            comment: "Default: 12"
+            assetVar: "grid_columns"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+        grid_gutter_width:
+            label: Column Gutter Width
+            type: text
+            tab: Grid
+            default: "1.5rem"
+            comment: "Default: 1.5rem"
+            assetVar: "grid_gutter_width"
+            span: row
+            spanClass: "col-md-2 p-l-0"
+            
+        ####################################################
+        # Tab: Blog
+        ####################################################
+        
+        blog_section_01:
+            tab: Blog
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-newspaper-o position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Blog Layout</div></div>
+            commentHtml: true
+            
+        blog_category_layout:
+            tab: Blog
+            label: Blog Category Layout
+            type: dropdown
+            showSearch: false
+            emptyOption: -- No Sidebar --
+            default: order-lg-2
+            span: row
+            spanClass: "col-md-6 p-l-0"
+            options:
+                order-lg-1: Left Sidebar
+                order-lg-2: Right Sidebar
+        blog_post_layout:
+            tab: Blog
+            label: Blog Post Layout
+            type: dropdown
+            showSearch: false
+            emptyOption: -- No Sidebar --
+            default: order-lg-2
+            span: row
+            spanClass: "col-md-6 p-l-0"
+            options:
+                order-lg-1: Left Sidebar
+                order-lg-2: Right Sidebar
+                
+        blog_section_02:
+            tab: Blog
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-comments-o position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Blog Comments</div></div>
+            commentHtml: true
+            
+        blog_comments:
+            tab: Blog
+            label: Blog Disqus Comments
+            type: text
+            comment: "Enter your website disqus shortname"
+            span: row
+            spanClass: "col-md-6 p-l-0"
+                        
+        ####################################################
+        # Tab: Advanced
+        ####################################################
+        
+        code_section_01:
+            tab: Advanced
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-code position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Code</div></div>
+            commentHtml: true
+            
+        custom_css:
+            tab: Advanced
+            label: Custom CSS
+            type: codeeditor
+            size: huge
+            language: css
+            span: row
+            spanClass: "col-md-6 p-l-0"
+        custom_js:
+            tab: Advanced
+            label: Custom JS
+            type: codeeditor
+            size: huge
+            language: javascript
+            span: row
+            spanClass: "col-md-6 p-l-0"
+            
+        code_section_02:
+            tab: Advanced
+            type: section
+            comment: <div class="d-flex align-items-center"><div class="position-relative rounded-circle bg-info bg-opacity-25 text-info border border-info p-3"><i class="icon-google position-absolute top-50 start-50 translate-middle fs-6"></i></div><div class="text-info text-uppercase fw-bold ms-2">Google Analytics</div></div>
+            commentHtml: true
+
+        google_analytics:
+            tab: Advanced
+            label: Google Analytics ID
+            type: codeeditor
+            size: huge
+            language: html
+            span: row
+            spanClass: "col-md-6 p-l-0"
+            

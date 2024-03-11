@@ -1,0 +1,64 @@
+description = "Blog Navigation"
+
+[viewBag]
+==
+{% set pageObject = this.controller.getPageObject() %}
+{% set nextPostRecord = pageObject.nextPost(blogPost.post) %}
+{% set previousPostRecord = pageObject.previousPost(blogPost.post) %}
+
+{% if previousPostRecord %}
+<div class="post-nav post-left previous position-fixed top-50 start-n1 z-10" data-scroll>
+    <a class="d-flex justify-content-center align-items-center w-4 w-md-5 h-6 p-0 btn btn-outline-primary rounded-0 group" href="{{ previousPostRecord.url }}" rel="prev">
+        <i class="fs-8 fs-md-6 bi bi-chevron-left"></i> 
+        <div class="d-md-flex flex-column d-none justify-content-center position-absolute start-100 p-3 border-end border-top border-bottom w-7 h-6 text-muted bg-white z-n10 opacity-0 group-hover-opacity-100 transition-40 pe-none">
+            <span class="d-flex justify-content-start fs-9">{{ "Previous Post"|_ }}</span>
+            <p class="d-flex justify-content-start text-start text-dark mb-0">{{ previousPostRecord.title }}</p>
+            <div class="d-flex  justify-content-start">
+                <span class="fs-9">
+                    <time datetime="{{ previousPostRecord.published_at|date('M d, Y') }}">{{ previousPostRecord.published_at|date('M d, Y') }}</time>
+                    <meta itemprop="datePublished" content="{{ previousPostRecord.published_at|date('M d, Y') }}"/>
+                </span>
+            </div>
+        </div>
+    </a>
+</div>
+{% endif %}
+{% if nextPostRecord %}
+<div class="post-nav post-right next position-fixed top-50 end-n1 z-10" data-scroll>
+    <a class="d-flex justify-content-center align-items-center w-4 w-md-5 h-6 p-0 btn btn-outline-primary rounded-0 group" href="{{nextPostRecord.url}}" rel="next" >
+        <i class="fs-8 fs-md-6 bi bi-chevron-right"></i>
+        <div class="d-md-flex flex-column d-none justify-content-center position-absolute end-100 p-3 border-start border-top border-bottom w-7 h-6 text-muted bg-white z-n10 opacity-0 group-hover-opacity-100 transition-40 pe-none">
+            <span class="d-flex justify-content-end fs-9">{{ "Next Post"|_ }}</span>
+            <p class="d-flex justify-content-end text-end text-dark mb-0">{{ nextPostRecord.title }}</p>
+            <div class="d-flex justify-content-end">
+                <span class="fs-9">
+                    <time datetime="{{ nextPostRecord.published_at|date('M d, Y') }}">{{ nextPostRecord.published_at|date('M d, Y') }}</time>
+                    <meta itemprop="datePublished" content="{{ nextPostRecord.published_at|date('M d, Y') }}"/>
+                </span>
+            </div>
+        </div>
+    </a>
+</div> 
+{% endif %}
+
+{% put styles %}
+<style>
+.post-nav {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden; 
+}
+.post-left[data-scroll="in"] {
+    transform: translate3d(-100%, 0, 0);
+}
+.post-right[data-scroll="in"] {
+    transform: translate3d(100%, 0, 0);
+}
+.post-nav[data-scroll="out"] {
+    opacity: 100;
+    visibility: visible; 
+}
+[data-scroll-dir-y="-1"] .post-nav {
+}
+</style>
+{% endput %}

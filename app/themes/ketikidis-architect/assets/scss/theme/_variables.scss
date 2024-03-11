@@ -1,0 +1,296 @@
+// Color system
+//
+
+// scss-docs-start gray-color-variables
+$white:    #fff !default;
+$gray-100: $color_g100 !default;
+$gray-200: $color_g200 !default;
+$gray-300: $color_g300 !default;
+$gray-400: $color_g400 !default;
+$gray-500: $color_g500 !default;
+$gray-600: $color_g600 !default;
+$gray-700: $color_g700 !default;
+$gray-800: $color_g800 !default;
+$gray-900: $color_g900 !default;
+$black:    #000 !default;
+// scss-docs-end gray-color-variables
+
+// fusv-disable
+// scss-docs-start gray-colors-map
+$grays: (
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+) !default;
+// scss-docs-end gray-colors-map
+// fusv-enable
+
+// scss-docs-start color-variables
+$blue:    $color_blue !default;
+$indigo:  $color_indigo !default;
+$purple:  $color_purple !default;
+$pink:    $color_pink !default;
+$red:     $color_red !default;
+$orange:  $color_orange !default;
+$yellow:  $color_yellow !default;
+$green:   $color_green !default;
+$teal:    $color_teal !default;
+$cyan:    $color_cyan !default;
+// scss-docs-end color-variables
+
+// scss-docs-start theme-color-variables
+$primary:       $color_primary !default;
+$secondary:     $color_secondary !default;
+$success:       $color_success !default;
+$info:          $color_info !default;
+$warning:       $color_warning !default;
+$danger:        $color_danger !default;
+$light:         $color_light !default;
+$dark:          $color_dark !default;
+// scss-docs-end theme-color-variables
+
+
+
+// Customize the light and dark text colors for use in our color contrast function.
+//
+
+$primary-100: tint-color($primary, 80%) !default;
+$primary-200: tint-color($primary, 60%) !default;
+$primary-300: tint-color($primary, 40%) !default;
+$primary-400: tint-color($primary, 20%) !default;
+$primary-500: $primary !default;
+$primary-600: shade-color($primary, 20%) !default;
+$primary-700: shade-color($primary, 40%) !default;
+$primary-800: shade-color($primary, 60%) !default;
+$primary-900: shade-color($primary, 80%) !default;
+
+$secondary-100: tint-color($secondary, 80%) !default;
+$secondary-200: tint-color($secondary, 60%) !default;
+$secondary-300: tint-color($secondary, 40%) !default;
+$secondary-400: tint-color($secondary, 20%) !default;
+$secondary-500: $secondary !default;
+$secondary-600: shade-color($secondary, 20%) !default;
+$secondary-700: shade-color($secondary, 40%) !default;
+$secondary-800: shade-color($secondary, 60%) !default;
+$secondary-900: shade-color($secondary, 80%) !default;
+
+$success-100: tint-color($success, 80%) !default;
+$success-200: tint-color($success, 60%) !default;
+$success-300: tint-color($success, 40%) !default;
+$success-400: tint-color($success, 20%) !default;
+$success-500: $success !default;
+$success-600: shade-color($success, 20%) !default;
+$success-700: shade-color($success, 40%) !default;
+$success-800: shade-color($success, 60%) !default;
+$success-900: shade-color($success, 80%) !default;
+
+$info-100: tint-color($info, 80%) !default;
+$info-200: tint-color($info, 60%) !default;
+$info-300: tint-color($info, 40%) !default;
+$info-400: tint-color($info, 20%) !default;
+$info-500: $info !default;
+$info-600: shade-color($info, 20%) !default;
+$info-700: shade-color($info, 40%) !default;
+$info-800: shade-color($info, 60%) !default;
+$info-900: shade-color($info, 80%) !default;
+
+$warning-100: tint-color($warning, 80%) !default;
+$warning-200: tint-color($warning, 60%) !default;
+$warning-300: tint-color($warning, 40%) !default;
+$warning-400: tint-color($warning, 20%) !default;
+$warning-500: $warning !default;
+$warning-600: shade-color($warning, 20%) !default;
+$warning-700: shade-color($warning, 40%) !default;
+$warning-800: shade-color($warning, 60%) !default;
+$warning-900: shade-color($warning, 80%) !default;
+
+$danger-100: tint-color($danger, 80%) !default;
+$danger-200: tint-color($danger, 60%) !default;
+$danger-300: tint-color($danger, 40%) !default;
+$danger-400: tint-color($danger, 20%) !default;
+$danger-500: $danger !default;
+$danger-600: shade-color($danger, 20%) !default;
+$danger-700: shade-color($danger, 40%) !default;
+$danger-800: shade-color($danger, 60%) !default;
+$danger-900: shade-color($danger, 80%) !default;
+
+$yellow-100: tint-color($yellow, 80%) !default;
+$yellow-200: tint-color($yellow, 60%) !default;
+$yellow-300: tint-color($yellow, 40%) !default;
+$yellow-400: tint-color($yellow, 20%) !default;
+$yellow-500: $yellow !default;
+$yellow-600: shade-color($yellow, 20%) !default;
+$yellow-700: shade-color($yellow, 40%) !default;
+$yellow-800: shade-color($yellow, 60%) !default;
+$yellow-900: shade-color($yellow, 80%) !default;
+
+$green-100: tint-color($green, 80%) !default;
+$green-200: tint-color($green, 60%) !default;
+$green-300: tint-color($green, 40%) !default;
+$green-400: tint-color($green, 20%) !default;
+$green-500: $green !default;
+$green-600: shade-color($green, 20%) !default;
+$green-700: shade-color($green, 40%) !default;
+$green-800: shade-color($green, 60%) !default;
+$green-900: shade-color($green, 80%) !default;
+
+$dark-100: tint-color($dark, 80%) !default;
+$dark-200: tint-color($dark, 60%) !default;
+$dark-300: tint-color($dark, 40%) !default;
+$dark-400: tint-color($dark, 20%) !default;
+$dark-500: $dark !default;
+$dark-600: shade-color($dark, 20%) !default;
+$dark-700: shade-color($dark, 40%) !default;
+$dark-800: shade-color($dark, 60%) !default;
+$dark-900: shade-color($dark, 80%) !default;
+
+$light-100: tint-color($light, 80%) !default;
+$light-200: tint-color($light, 60%) !default;
+$light-300: tint-color($light, 40%) !default;
+$light-400: tint-color($light, 20%) !default;
+$light-500: $light !default;
+$light-600: shade-color($light, 20%) !default;
+$light-700: shade-color($light, 40%) !default;
+$light-800: shade-color($light, 60%) !default;
+$light-900: shade-color($light, 80%) !default;
+
+
+
+// Contrast ratio
+//
+
+$min-contrast-ratio:   2.5 !default;
+
+
+
+// Options
+//
+
+$enable-caret:                false !default;
+
+
+
+// Body
+//
+
+$body-color:                $color_text !default;
+
+
+
+// Links
+//
+
+$link-decoration:                         none !default;
+
+
+
+// Grid breakpoints
+//
+
+$grid-breakpoints: (
+  xs: $break_xs,
+  sm: $break_sm,
+  md: $break_md,
+  lg: $break_lg,
+  xl: $break_xl,
+  xxl: $break_xxl
+) !default;
+
+
+
+// Grid containers
+//
+
+$container-max-widths: (
+  sm: $container_sm,
+  md: $container_md,
+  lg: $container_lg,
+  xl: $container_xl,
+  xxl: $container_xxl
+) !default;
+
+
+
+// Grid columns
+//
+
+$grid-columns:                $grid_columns !default;
+$grid-gutter-width:           $grid_gutter_width !default;
+$grid-row-columns:            6 !default;
+
+
+
+// Components
+//
+
+$box-shadow-sm:               0 0 1rem rgba($gray-600, .15) !default;
+$box-shadow:                  0 0 1.5rem rgba($gray-600, .2) !default;
+$box-shadow-lg:               0 0.75rem 1.25rem 0.075rem rgba($gray-600, .2) !default;
+
+$transition-base:             all .3s ease !default;
+
+
+
+// Typography
+//
+
+$font-family-base:            $font_text !default;
+$font-size-base:              $font_text_size !default;
+$font-size-sm:                $font-size-base * .875 !default;
+$font-size-lg:                $font-size-base * 1.25 !default;
+$font-weight-base:            $font_text_weight !default;
+$line-height-base:            $font_text_height !default;
+
+$headings-font-family:        $font_head !default;
+$headings-font-weight:        $font_head_weight !default;
+$headings-line-height:        $font_head_height !default;
+$headings-color:              $color_head !default;
+
+
+
+// Buttons + Forms
+//
+
+$input-btn-padding-y:         .75rem !default;
+$input-btn-padding-x:         1rem !default;
+$input-btn-font-size:         $font-size-base !default;
+
+$input-btn-padding-y-sm:      .25rem !default;
+$input-btn-padding-x-sm:      .5rem !default;
+$input-btn-font-size-sm:      $font-size-sm !default;
+
+$input-btn-padding-y-lg:      .875rem !default;
+$input-btn-padding-x-lg:      1.2rem !default;
+$input-btn-font-size-lg:      $font-size-lg !default;
+
+
+
+// Buttons
+//
+
+$btn-padding-y:               $input-btn-padding-y !default;
+$btn-padding-x:               $input-btn-padding-x + .5 !default;
+
+$btn-padding-y-sm:            $input-btn-padding-y-sm !default;
+$btn-padding-x-sm:            $input-btn-padding-x-sm + .5 !default;
+
+$btn-padding-y-lg:            $input-btn-padding-y-lg !default;
+$btn-padding-x-lg:            $input-btn-padding-x-lg + .5 !default;
+
+$btn-transition:              color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out, box-shadow .3s ease-in-out !default;
+
+
+
+// Forms
+//
+
+$input-font-size:                       $input-btn-font-size-sm !default;
+
+
+

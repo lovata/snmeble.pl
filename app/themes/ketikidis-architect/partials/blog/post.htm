@@ -1,0 +1,23 @@
+description = "Blog Post"
+
+[viewBag]
+==
+<div class="">
+    <img class="w-100 img-fluid mb-3" src="{{ post.featured_images.first.getThumb(1200, false, 'auto') }}" width="1200" height="auto" alt="{{ post.title }}" loading="lazy">
+    <div class="d-flex flex-wrap mb-3 fs-8 text-uppercase text-muted">
+        <div class="me-3">{{ post.published_at|date('M d, Y') }}</div>
+        <div class="me-3">{{ post.user.first_name}}</div>
+        {% if post.categories.count %}
+        {% for category in post.categories %}
+        <div><a href="{{ category.url }}" class="text-muted text-primary-hover me-1">{{ category.name }}{{ not loop.last ? ',' }}</a></div>
+        {% endfor %}
+        {% endif %}
+        {% if this.theme.blog_comments %}
+        <div class="ms-auto">
+            <i class="bi bi-chat w-4 h-4 me-1"></i>
+            <a class="text-muted hover:text-primary" href="{{ ''| page }}#disqus_thread"></a>
+        </div>
+        {% endif %}
+    </div>
+    {{ post.content_html|raw }}
+</div>

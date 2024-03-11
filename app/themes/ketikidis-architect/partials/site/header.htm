@@ -1,0 +1,248 @@
+description = "Header"
+
+[staticMenu]
+code = "main-menu"
+==
+{% import _self as nav %}
+{% macro render_menu(items) %}
+{% import _self as nav %}
+{% for item in items %}
+{% if not item.viewBag.isHidden %}
+<li class="{{ item.items ? 'dropdown-submenu' }}">
+	<a class="dropdown-item d-flex justify-content-between align-items-center py-2 px-3 px-lg-4 fs-7 transition-30 {{ item.isActive or item.isChildActive ? 'active' : 'bg-primary-100-hover' }} {{ item.items ? 'dropdown-toggle' : '' }}" {% if item.isActive or item.isChildActive %}aria-current="page"{% endif %} href="{{ item.items ? '#' : item.url }}" {{ item.viewBag.isExternal ? 'target="_blank"' }} {% if item.items %}id="dropdownMenu{{ item.title|replace({' ':'-'}) }}" role="button" aria-expanded="false"{% endif %}>
+		{{ item.title|_ }} 
+		{% if item.items %}<i class="bi bi-chevron-down ms-1 fs-8"></i>{% endif %}
+	</a>
+	{% if item.items %}
+	<ul class="dropdown-menu shadow border-0 py-0 py-lg-2 {{ 'right' in item.code ? 'dropdown-menu-end' }} {{ item.viewBag.cssClass ? item.viewBag.cssClass : 'fadeUp' }}" aria-labelledby="dropdownMenu{{ item.title|replace({' ':'-'}) }}">
+		{{ nav.render_menu(item.items) }}
+	</ul>
+	{% endif %}
+</li>
+{% if 'divider' in item.code %}<div class="dropdown-divider"></div>{% endif %}
+{% endif %}
+{% endfor %}
+{% endmacro %}
+
+<header class="header position-fixed top-0 start-0 end-0 z-90 transition-30" data-scroll>
+    <nav class="navbar navbar-expand-lg navbar-dark" id="nav-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ 'index'|staticPage }}">
+                <img class="w-6 w-sm-auto" src="{{ this.theme.site_logo|media|resize(false, 55, { mode: 'auto' }) }}" alt="{{ this.theme.site_name }}">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="text-dark text-primary-hover bi bi-list"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-nav">
+    		    {% set items=staticMenu.menuItems %}
+                {% if staticMenu.menuItems %}
+                <ul class="navbar-nav ms-auto navbar-nav-scroll hover-dropdown" style="--bs-scroll-height:520px;">
+                    {% for item in items %}
+					{% if not item.viewBag.isHidden %}
+                    <li class="nav-item group {{ item.items ? 'dropdown' }}">
+                        <a class="nav-link d-flex justify-content-between align-items-center p-3 p-lg-4 border-bottom-lg-0 border-bottom transition-30 position-relative {{ item.isActive or item.isChildActive ? 'active text-primary' : 'text-dark text-primary-hover' }} {{ item.items ? 'dropdown-toggle' : '' }}" {% if item.isActive or item.isChildActive %}aria-current="page"{% endif %} href="{{ item.url }}" {{ item.viewBag.isExternal ? 'target="_blank"' }} {% if item.items %}id="dropdownMenu{{ item.title|replace({' ':'-'}) }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{% endif %}>
+                            {{ item.title|_ }}
+                            {% if item.items %}<i class="bi bi-chevron-down ms-1 fs-8"></i>{% endif %}
+                            <div class="position-absolute bottom-3 start-4 bg-primary w-0 group-hover-w-4 opacity-0 group-hover-opacity-100 h-px mt-1 d-none d-lg-block transition-30"></div>
+                        </a>
+                    	{% if item.items %}
+                    	<ul class="dropdown-menu shadow border-0 py-0 py-lg-2 {{ 'right' in item.code ? 'dropdown-menu-end' }} {{ item.viewBag.cssClass ? item.viewBag.cssClass : 'fadeUp' }}" aria-labelledby="dropdownMenu{{ item.title|replace({' ':'-'}) }}">
+                    		{{ nav.render_menu(item.items) }}
+                    	</ul>
+                    	{% endif %}
+                    </li>
+					{% endif %}
+                    {% endfor %}
+                    {% if this.theme.site_translate %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-flex justify-content-between align-items-center p-3 p-lg-4 px-lg-2 border-bottom-lg-0 border-bottom transition-30 text-dark text-primary-hover dropdown-toggle" href="javascript:;" id="dropdownMenu{{ code|upper }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-globe border-start-lg ps-lg-3"></i>
+                        </a>
+                    	<ul class="dropdown-menu shadow border-0 py-0 py-lg-2 dropdown-menu-end fadeUp" style="min-width:auto;" aria-labelledby="dropdownMenu{{ code|upper }}">
+                    		{% for code, name in locales %}
+                            <li class="">
+                            	<a class="dropdown-item d-flex justify-content-between align-items-center py-2 px-3 px-lg-4 fs-7 transition-30 {{ code == activeLocale ? 'active' : 'bg-primary-100-hover' }}" href="javascript:;" role="button" aria-expanded="false" name="locale" data-request="onSwitchLocale" data-request-data="locale: '{{ code }}'">
+                            		{{ name }}
+                            	</a>
+                            </li>
+                            {% endfor %}
+                    	</ul>
+                    </li>
+                    {% endif %}
+                    {% if this.theme.site_search %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-flex justify-content-between align-items-center p-3 py-lg-4 px-lg-2 transition-30 text-dark text-primary-hover" role="button" href="javascript:;" data-search-trigger>
+                            <i class="bi bi-search border-start-lg ps-lg-3" data-search-trigger></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    {% if this.theme.site_search %}
+    <div class="search position-absolute top-0 start-0 end-0 d-flex align-items-center py-2 h-lg-100 w-100 bg-white h-6 z-90 opacity-0 invisible transition-30 ">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <form class="w-100" action="{{ searchInput.searchPage | page }}?q={{ query | url_encode(true) }}" method="get">
+                <div class="ss-search-form">
+                    <div class="ss-search-form__input d-flex align-items-center justify-content-between">
+                        <input class="form-control form-control-lg border-0" name="q" type="text" placeholder="What are you looking for?" 
+                               value="{{ searchInput.query }}"
+                               autocomplete="off"
+                               autofocus
+                                {% if searchInput.useAutoComplete %}
+                                    data-track-input
+                                    data-request="{{ searchInput }}::onType"
+                                    data-request-before-update="document.getElementById('autocomplete-results').classList.add('ss-search-form__results--visible')"
+                                    data-request-update="'{{ searchInput }}::autocomplete': '#autocomplete-results'"
+                                {% endif %}
+                        >
+                        <button class="ss-search-form__submit nav-link bg-transparent border-0 d-flex justify-content-between align-items-center p-3 py-lg-4 px-lg-2 transition-30 text-dark text-primary-hover" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        <a class="nav-link d-flex justify-content-between align-items-center p-3 py-lg-4 px-lg-2 transition-30 text-dark text-primary-hover" role="button" title="Close" href="javascript:;" data-search-trigger>
+                            <i class="bi bi-x-lg border-start ps-3" data-search-trigger></i>
+                        </a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="position-absolute top-100 ss-search-form__results" id="autocomplete-results"></div>
+    </div>
+    {% endif %}
+</header>
+
+{% put scripts %}
+<script>
+
+
+// Dropdown mobile menu
+document.querySelectorAll('.dropdown-submenu').forEach(element => element.addEventListener('click', event => {
+    //event.preventDefault();
+    event.stopPropagation();
+
+    let innerLists = element.querySelector('.dropdown-menu');
+    if (innerLists) {
+        if (!innerLists.classList.contains("show")) {
+            document.querySelector(".dropdown-menu").querySelectorAll(".dropdown-menu").forEach(elm => {
+                if (!isDescendant(elm, element)) {
+                    elm.classList.remove("show")
+                }
+            });
+        }
+
+        innerLists.classList.toggle("show");
+    }
+}));
+
+{% if this.theme.site_search %}
+// Search Bar
+var menu = document.querySelector(".search");
+//var navigation = document.querySelector(".header");
+
+function handleClick(evt) {
+    // Only if a click on a dropdown trigger happens, either close or open it.
+    if (evt.target.hasAttribute("data-search-trigger")) {
+        if (menu.classList.contains("invisible")) {
+            menu.classList.remove("invisible", "opacity-0");
+            menu.classList.add("visible", "opacity-100");
+            //navigation.classList.add("is-expanded");
+        } else {
+            menu.classList.add("invisible", "opacity-0");
+            menu.classList.remove("visible", "opacity-100");
+            //navigation.classList.remove("is-expanded");
+        }
+        return;
+    }
+    // If a click happens somewhere outside the dropdown, close it.
+    if (!evt.target.closest(".search")) {
+        menu.classList.add("invisible", "opacity-0");
+        //navigation.classList.remove("is-expanded");
+    }
+}
+window.addEventListener("click", handleClick);
+{% endif %}
+</script>
+{% endput %}
+
+{% put styles %}
+<style>
+/* Sticky Navbar */
+.dropdown-menu {
+    background-color: rgba(255,255,255,.9);
+}
+.header[data-scroll="out"] {
+    transform: translate3d(0,-100%,0);
+    background-color: rgba(255,255,255,.9);
+	box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+}
+[data-scroll-dir-y="-1"] .header {
+	transform: translate3d(0,0,0);
+}
+@media (max-width: 992px) {
+    .header[data-scroll="in"] .navbar-nav {
+        background-color: rgba(255,255,255,.9);
+    	box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+    }
+}
+{% if this.theme.site_search %}
+/* Search Bar */
+.search.visible {
+    transform: translate3d(0, 0, 0);
+}
+.search.invisible {
+    transform: translate3d(0, -100%, 0);
+}
+.search .form-control:focus {
+    box-shadow: none;
+}
+{% endif %}
+
+/* Animation */
+.fadeUp {
+	animation-duration: .5s;
+	animation-fill-mode: both;
+    animation-name: fadeUp;
+}
+@keyframes fadeUp {
+	0% {
+		opacity: 0;
+		transform: translate3d(0,100%,0);
+	}
+	100% {
+		opacity: 1;
+		transform: translateZ(0);
+	}
+}
+
+.flipY {
+	animation-duration: .5s;
+	animation-fill-mode: both;
+    animation-name: flipY;
+    backface-visibility: visible!important;
+}
+@keyframes flipY {
+	0% {
+		animation-timing-function: ease-in;
+		opacity: 0;
+		transform: perspective(400px) rotateY(90deg);
+	}
+	40% {
+		animation-timing-function: ease-in;
+		transform: perspective(400px) rotateY(-20deg);
+	}
+	60% {
+		opacity: 1;
+		transform: perspective(400px) rotateY(10deg);
+	}
+	80% {
+		transform: perspective(400px) rotateY(-5deg);
+	}
+	100% {
+		transform: perspective(400px);
+	}
+}
+</style>
+{% endput %}

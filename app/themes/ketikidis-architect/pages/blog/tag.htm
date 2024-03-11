@@ -1,0 +1,44 @@
+title = "Tag Posts"
+url = "/blog/tag/:tag/:page?"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[gr] = "/tag-posts"
+
+[postsWithTag]
+tag = "{{ :tag }}"
+orderBy = "published_at asc"
+page = "{{ :page }}"
+resultsPerPage = 9
+postPage = "blog/post"
+categoryPage = "blog/category"
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = "{{ :slug }}"
+postsPerPage = 9
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "blog/category"
+postPage = "blog/post"
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "blog/category"
+==
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 mb-6 {{ this.theme.blog_category_layout == 'order-lg-1' ? 'order-lg-2' : 'order-lg-1' }}">
+            {% partial 'blog/posts' posts = postsWithTag.posts %}
+        </div>
+        {% if this.theme.blog_category_layout is not empty %}
+        <div class="col-lg-3 mb-6 {{ this.theme.blog_category_layout }}">
+            {% partial 'blog/categories' %}
+            {% partial 'blog/latest' %}
+            {% partial 'blog/tags' %}
+        </div>
+        {% endif %}
+    </div>
+</div>

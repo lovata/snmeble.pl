@@ -1,0 +1,41 @@
+description = "Blog Categories"
+
+[viewBag]
+==
+{% import _self as list %}
+{% macro render_cats(categories, currentCategorySlug) %}
+{% import _self as list %}
+{% for category in categories %}
+{% set postCount = category.post_count %}
+<div class="d-flex align-items-center">
+    <a class="me-2 {{ category.slug == currentCategorySlug ? 'active' : '' }} {{ (category.children|length > 0) ? 'collapsed' : '' }}" href="{{ (category.children|length > 0) ? '#' ~ category.slug : category.url }}" {% if category.children|length > 0 %}data-bs-toggle="collapse" data-bs-target="#{{ category.slug }}" aria-expanded="false" aria-controls="flush-collapseOne"{% endif %}>
+        <i class="{{ (category.children|length > 0) ? 'text-danger bi bi-plus-circle-dotted' : 'text-primary bi bi-arrow-right-circle' }}"></i>
+    </a>
+    <a class="d-flex flex-grow-1 align-items-center py-2 my-1 px-0 fs-6 {{ not loop.last ? 'border-bottom' }} {{ category.slug == currentCategorySlug ? 'active text-primary' : 'text-dark text-primary-hover' }}" href="{{ category.url }}">
+        <span>{{ category.name }}</span>
+        {% if postCount %}
+        <span class="ms-auto d-flex justify-content-center align-items-center fs-10 fw-bold text-white bg-primary rounded-circle w-3 h-3">
+            {{ postCount }}
+        </span>
+        {% endif %}
+    </a>
+</div>
+{% if category.children|length > 0 %}
+<div class="collapse ps-2 ms-2 border-start" id="{{ category.slug }}" aria-labelledby="{{ category.slug }}" data-bs-parent="#{% if category.parent_id == null %}category-nav{% else %}{{ category.slug }}{% endif %}">
+    {{ list.render_cats(category.children, currentCategorySlug) }}
+</div>
+{% endif %}
+{% endfor %}
+{% endmacro %}
+
+<div class="p-4 mb-7" data-sal="fade" data-sal-duration="2000">
+    <h3 class="fs-5 pb-2">Categories</h3>
+    <div class="bg-primary w-5 h-px mb-4"></div>
+    {% if blogCategories.categories|length > 0 %}
+    <div id="category-nav">
+        {{ list.render_cats(blogCategories.categories, blogCategories.currentCategorySlug) }}
+    </div>
+    {% else %}
+    <p>No categories were found.</p>
+    {% endif %}
+</div>

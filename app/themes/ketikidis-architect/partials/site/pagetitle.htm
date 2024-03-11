@@ -1,0 +1,15 @@
+description = "Page Title"
+
+[viewBag]
+==
+{% if this.page.id == 'blog-category' %}
+<h1 class="mb-3 display-4">{{ category.name }}</h1>
+{% if category.description %}<p>{{ str_limit(category.description|striptags|raw, 140) }}</p>{% endif %}
+{% elseif this.page.id == 'blog-post' %}
+<h1 class="mb-3 display-4">{{ post.title }}</h1>
+{% elseif this.page.id == 'blog-tag' %}
+<h1 class="mb-3 display-4">{{ "ginopane.blogtaxonomy::lang.components.tag_posts.posts_with_tag" | trans }} "{{ postsWithTag.tag.name }}"</h1>
+{% else %}
+<h1 class="mb-3 display-4">{{ this.page.meta_title|default(this.page.title) }}</h1>
+{% if this.page.meta_description %}<p>{{ str_limit(this.page.meta_description|striptags|raw, 140) }}</p>{% endif %}
+{% endif %}

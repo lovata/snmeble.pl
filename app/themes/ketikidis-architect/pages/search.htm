@@ -1,0 +1,34 @@
+title = "Search results"
+url = "/search"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/search"
+
+[searchResults]
+resultsPerPage = 8
+showProviderBadge = 1
+noResultsMessage = "Your search returned no results."
+visitPageMessage = "Visit page"
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "blog/category"
+==
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 mb-6 {{ this.theme.blog_category_layout == 'order-lg-1' ? 'order-lg-2' : 'order-lg-1' }}">
+            {% partial 'blog/searchresults' %}
+        </div>
+        {% if this.theme.blog_category_layout is not empty %}
+        <div class="col-lg-3 mb-6 {{ this.theme.blog_category_layout }}">
+            {% partial 'blog/categories' %}
+            {% partial 'blog/popular' %}
+            {% partial 'blog/tags' %}
+            {% partial 'blog/latest' %}
+        </div>
+        {% endif %}
+    </div>
+</div>

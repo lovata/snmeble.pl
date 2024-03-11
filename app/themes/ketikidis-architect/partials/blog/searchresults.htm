@@ -1,0 +1,87 @@
+description = "Search Results"
+
+[viewBag]
+==
+<div class="row g-0">
+    {% set results = searchResults.results %}
+    {% for result in results %}
+    <div class="col-md-12 mb-4">
+        <div class="row g-lg-0 align-items-center group">
+            <div class="col-sm-5 {{ (loop.index0 % 2 == 1) ? 'order-md-2' : 'order-md-1' }}" data-sal="{{ (loop.index0 % 2 == 1) ? 'slide-left' : 'slide-right' }}" data-sal-duration="2000">
+                {% set result = result %}
+                {% if result.thumb %}
+                {% set result = result %}
+                <a class="d-block position-relative mb-3" href="{{ result.url }}">
+                    <img class="w-100 img-fluid" src="{{ result.thumb.getThumb(450, 500, 'crop') }}" width="450" height="500" alt="{{ result.title|raw }}" loading="lazy">
+                    <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100 bg-dark-200 opacity-0 group-hover-opacity-25 transition-30"></div>
+                    {% if searchResults.showProviderBadge %}
+                    <div class="d-md-flex flex-column justify-content-center align-items-center p-3 position-absolute top-0 {{ (loop.index0 % 2 == 1) ? 'end-0' : 'start-0' }} opacity-0 text-white text-uppercase lh-1 fw-bold group-hover-opacity-100 d-none transition-30">
+                        <div class="fs-6">{{ result.provider }}</div>
+                    </div>
+                    {% endif %}
+                </a>
+                {% endif %}
+            </div>
+            <div class="col-sm-7 position-relative {{ (loop.index0 % 2 == 1) ? 'order-md-1' : 'order-md-2'  }}" data-sal="{{ (loop.index0 % 2 == 1) ? 'slide-right' : 'slide-left' }}" data-sal-duration="2000">
+                <div class="pt-lg-5 {{ (loop.index0 % 2 == 1) ? 'pe-0 pe-lg-5 pe-md-4 text-md-end' : 'ps-0 ps-lg-5 ps-md-4' }}">
+                    <div class="px-lg-4">
+                        <div class="bg-primary w-6 group-hover-w-7 h-px position-absolute top-0 {{ (loop.index0 % 2 == 1) ? 'end-n5' : 'start-n5' }} d-none d-md-block transition-30"></div>
+                        <div class="position-relative">
+                            <div class="mb-3">
+                                <div class="mb-1">
+                                    <a class="fs-8 text-muted text-uppercase text-primary-hover transition-30">{{ result.provider }}</a>
+                                </div>
+                                <h2 class="mb-3 display-6 fw-normal">
+                                    {% set result = result %}
+                                    <a class="text-dark text-primary-hover pb-2" href="{{ result.url | app }}">{{ result.title|raw }}</a>
+                                </h2>
+                                <p>{{ html_limit(result.excerpt, 160)|striptags|raw }}</p>
+                            </div>
+                            <div class="">
+                                <a class="text-primary text-uppercase mb-4" href="{{ result.url | app }}">{{ searchResults.visitPageMessage }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-md-12 mb-4">
+        <p>{{ searchResults.noResultsMessage }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% set results = results %}
+{% if results.hasPages %}
+<div class="row" data-sal="fade" data-sal-duration="2000">
+    <div class="col mt-4">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center flex-wrap m-0">
+                {% if results.currentPage > 1 %}
+                <li class="page-item me-2">
+                    <a class="d-flex justify-content-center align-items-center btn btn-outline-primary rounded-circle p-0 w-5 h-5" href="{{ results.previousPageUrl }}" tabindex="-1" aria-label="Previous">
+                    <i class="bi bi-chevron-left"></i>
+                    <span class="visually-hidden-focusable">Previous</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% for page in 1..results.lastPage %}
+                <li class="page-item me-2">
+                    <a class="{{ results.currentPage == page ? 'active' : null }} d-flex justify-content-center align-items-center btn btn-outline-primary rounded-circle p-0 w-5 h-5" href="{{ this.page.baseFileName | page }}?q={{ searchResults.query }}&amp;page={{ page }}">{{ page }} <span class="visually-hidden-focusable">(current)</span></a>
+                </li>
+                {% endfor %}
+                {% if results.lastPage > results.currentPage %}
+                <li class="page-item">
+                    <a class="d-flex justify-content-center align-items-center btn btn-outline-primary rounded-circle p-0 w-5 h-5" href="{{ results.nextPageUrl }}" aria-label="Next">
+                    <i class="bi bi-chevron-right"></i>
+                    <span class="visually-hidden-focusable">Next</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endif %}

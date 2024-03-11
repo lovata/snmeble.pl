@@ -1,0 +1,22 @@
+description = "About Block"
+
+[viewBag]
+==
+<section class="{{ data.section_about_id|slug }}">
+    <div class="container">
+        <div class="row overflow-hidden">
+            <div class="col-lg-6 order-md-last d-md-flex align-items-stretch" data-sal="slide-down" data-sal-duration="2000">
+                <div class="w-100 h-8 h-lg-9 bg-size-cover bg-position-center" style="background-image: url('{{ data.section_about_image|media|resize(800, 1000, { mode: 'crop' }) }}');"></div>
+            </div>
+            <div class="col-lg-6 py-6 py-md-12" data-sal="slide-up" data-sal-duration="2000">
+                <div class="pe-md-12">
+                    <h2 class="mb-4 display-3">{{ data.section_about_title|raw }}</h2>
+                    {{ data.section_about_desc|raw }}
+                    {% if data.section_about_btn_link is not empty %}
+                    <a href="{{ data.section_about_btn_clink ? data.section_about_btn_clink : (data.section_about_btn_plink|staticPage) }}" class="btn btn-primary">{{ data.section_about_btn_label }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

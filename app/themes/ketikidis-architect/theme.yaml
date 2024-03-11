@@ -1,0 +1,13 @@
+name: "Architect"
+description: "Architect - Multipurpose Theme with Powerful Pagebuilder"
+author: Charis Ketikidis
+homepage: "https://www.ketikidis.com"
+code: architect
+authorCode: Ketikidis
+form: config/fields.yaml
+require:
+    - Rainlab.Pages
+    - Rainlab.Blog
+    - Rainlab.Translate
+    - OFFLINE.SiteSearch
+    - GinoPane.BlogTaxonomy

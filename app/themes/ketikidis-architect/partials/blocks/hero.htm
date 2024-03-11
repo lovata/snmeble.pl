@@ -1,0 +1,30 @@
+description = "Hero Block"
+==
+<section class="{{ data.section_hero_id|slug }} w-100 h-9 h-md-10 bg-size-cover bg-position-center position-relative" 
+    {% if data.section_hero_type == 'image' %}
+    style="background-image: url('{{ data.section_hero_image|media|resize(1920, 1080, { mode: 'crop' }) }}');" data-jarallax data-speed="0.5" data-type="scroll"
+    {% elseif data.section_hero_type == 'video' %}
+    data-jarallax-video="mp4:{{ data.section_hero_video|media }},webm:{{ data.section_hero_video|media }},ogv:{{ data.section_hero_video|media }}"
+    {% elseif data.section_hero_type == 'youtube' or data.section_hero_type == 'vimeo' %}
+    data-jarallax-video="{{ data.section_hero_videoUrl }}"
+    {% endif %}
+    >
+    <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100 bg-dark-100 opacity-25"></div>
+    <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100" style="background: linear-gradient(to top, rgba(255, 255, 255) 0, rgba(255, 255, 255, .8) 20%, rgba(255, 255, 255, 0) 100%);"></div>
+    <div class="container h-100 z-10 position-absolute top-50 start-50 translate-middle">
+        <div class="row h-100 g-0 align-items-center {{ data.section_hero_position }}">
+            <div class="col-md-10 col-lg-7 d-flex align-items-end position-relative">
+                <div class="" data-sal="slide-left" data-sal-duration="2000" data-sal-delay="500" data-sal-easing="ease-out-back">
+                    <div class="z-30">
+                        <div class="bg-primary position-relative start-1 h-4 w-4"></div>
+                        <h1 class="mb-4 display-3">{{ data.section_hero_title|raw }}</h1>
+                        {{ data.section_hero_desc|raw }}
+                    </div>
+                    {% if data.section_hero_btn_link is not empty %}
+                    <a href="{{ data.section_hero_btn_clink ? data.section_hero_btn_clink : (data.section_hero_btn_plink|staticPage) }}" class="btn btn-primary py-md-3 px-md-5 py-2 px-4">{{ data.section_hero_btn_label }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

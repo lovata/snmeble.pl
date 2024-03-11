@@ -1,0 +1,42 @@
+description = "Scroll to top"
+
+[viewBag]
+==
+<button class="scrolltop d-flex justify-content-center align-items-center rounded-circle w-4 w-md-5 h-4 h-md-5 position-fixed end-4 bottom-4 z-90 transition-30 btn p-0 btn-primary m-0" data-scroll>
+    <i class="bi bi-arrow-up text-white fs-7 fs-md-6"></i>
+</button>
+
+{% put scripts %}
+<script>
+var scrollToTopBtn = document.querySelector(".scrolltop")
+var rootElement = document.documentElement
+
+function scrollToTop() {
+    //scroll to top logic
+    rootElement.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    })
+}
+scrollToTopBtn.addEventListener("click", scrollToTop)
+</script>
+{% endput %}
+
+{% put styles %}
+<style>
+.scrolltop {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden; 
+}
+.scrolltop[data-scroll="in"] {
+}
+.scrolltop[data-scroll="out"] {
+    transform: translate3d(0, -100%, 0);
+    opacity: 100;
+    visibility: visible; 
+}
+[data-scroll-dir-y="-1"] .scrolltop {
+}
+</style>
+{% endput %}

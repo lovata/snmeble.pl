@@ -1,0 +1,20 @@
+description = "Banner Section"
+
+[viewBag]
+==
+<section class="{{ data.section_banner_id|slug }} w-100 h-8 bg-size-cover bg-position-center position-relative jarallax" style="background-image: url('{{ data.section_banner_image|media|resize(1920, 600, { mode: 'crop' }) }}');" data-jarallax data-speed="0.5" data-type="scroll">
+    <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100 bg-dark-100 opacity-25"></div>
+    <div class="container h-100">
+        <div class="row g-0 h-100 align-items-center justify-content-center">
+            <div class="col-md-8 mx-auto text-center position-relative" data-sal="slide-up" data-sal-duration="2000" data-sal-easing="ease-out-back">
+                <div class="py-5">
+                    <h2 class="mb-2 display-4">{{ data.section_banner_title|raw }}</h2>
+                    <p class="">{{ data.section_banner_desc|raw }}</p>
+                    {% if data.section_banner_btn_link is not empty %}
+                    <a href="{{ data.section_banner_btn_clink ? data.section_banner_btn_clink : (data.section_banner_btn_plink|staticPage) }}" class="btn btn-primary">{{ data.section_banner_btn_label }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

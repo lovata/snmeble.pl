@@ -1,0 +1,35 @@
+description = "Latest Posts"
+
+[viewBag]
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 4
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "blog/category"
+postPage = "blog/post"
+==
+<div class="p-4 mb-4" data-sal="fade" data-sal-duration="2000">
+    <h3 class="fs-5 pb-2">Recent Blog</h3>
+    <div class="bg-primary w-5 h-px mb-4"></div>
+    {% set posts = blogPosts.posts %}
+    {% for post in posts %}
+    <div class="d-flex align-items-start {{ not loop.last ? 'border-bottom pb-4 mb-4' }}">
+        {% if post.featured_images.count %}
+        <a class="flex-shrink-0 bg-size-cover bg-position-center w-6 h-6 me-4" style="background-image: url('{{ post.featured_images.first.getThumb(450, 300, 'crop') }}');" href="{{ post.url }}"></a>
+        {% endif %}
+        <div class="flex-grow-1">
+            <h3 class="fs-5 fw-normal"><a class="text-dark text-primary-hover" href="{{ post.url }}">{{ post.title }}</a></h3>
+            <div class="d-flex flex-wrap fs-9 text-muted">
+                <div><span class="me-2">{{ post.published_at|date('M d, Y') }}</span></div>
+                <div><span>{{ post.user.first_name}}</span></div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="d-flex">
+        {{ blogPosts.noPostsMessage }}
+    </div>
+    {% endfor %}
+</div>

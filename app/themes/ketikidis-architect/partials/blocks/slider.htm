@@ -1,0 +1,171 @@
+description = "Slider Section"
+
+[viewBag]
+==
+<section class="{{ data.section_slider_id|slug }}" data-sal="fade" data-sal-duration="2000">
+    <div class="slider-{{ data.section_slider_id|slug }} splide group">
+    	<div class="splide__arrows">
+    		<button class="splide__arrow splide__arrow--prev w-4 w-md-5 h-4 h-md-5 bg-transparent opacity-0 group-hover-opacity-100 transition-30">
+    		    <span class="d-flex justify-content-center align-items-center btn btn-outline-primary rounded-circle fs-7 fs-md-5 p-0 w-4 w-md-5 h-4 h-md-5 bi bi-chevron-left"></span>
+    		</button>
+    		<button class="splide__arrow splide__arrow--next w-4 w-md-5 h-4 h-md-5 bg-transparent opacity-0 group-hover-opacity-100 transition-30">
+    		    <span class="d-flex justify-content-center align-items-center btn btn-outline-primary rounded-circle fs-7 fs-md-5 p-0 w-4 w-md-5 h-4 h-md-5 bi bi-chevron-right"></span>
+    		</button>
+    	</div>
+    	<div class="splide__track" data-sal="fade" data-sal-duration="2000">
+            
+    		<ul class="splide__list">
+    		    {% for slide in data.section_sliders %}
+    			<li class="splide__slide" {% if slide.section_slider_type != 'image' %}{{ slide.section_slider_type}}="{{ slide.section_slider_videoUrl }}{{ slide.section_slider_type == 'data-splide-html-video' ? slide.section_slider_video|media }}"{% endif %}>
+			        <img class="img-fluid" src="{{ slide.section_slider_image|media|resize(1920, 1080, { mode: 'crop' }) }}" alt="{{ slide.section_slider_title }}">
+			        <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100 bg-dark-100 opacity-25 {{ data.section_slider_videoAutoplay == true ? 'z-10' : 'z-n10'}}"></div>
+			        <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100 {{ data.section_slider_videoAutoplay == true ? 'z-10' : 'z-n10'}}" style="background: linear-gradient(to top, rgba(255, 255, 255) 0, rgba(255, 255, 255, .8) 20%, rgba(255, 255, 255, 0) 100%);"></div>
+                    <div class="container h-100 z-20">
+                        <div class="row h-100 g-0 align-items-center {{ slide.section_slider_position }}">
+                            <div class="col-lg-5 col-md-10 d-flex align-items-end">
+                                <div class="{{ data.section_slider_videoAutoplay == true ? 'z-30'}}">
+                                    <h1 class="fadeInRight mb-4 display-3 fw-bold">{{ slide.section_slider_title|raw }}</h1>
+                                    <div class="fadeIn">
+                                        {{ slide.section_slider_desc|raw }}
+                                    </div>
+                                    {% if slide.section_slider_btn_link is not empty %}
+                                    <a class="flipInX btn btn-primary py-md-3 px-md-5 py-2 px-4" href="{{ slide.section_slider_btn_clink ? slide.section_slider_btn_clink : (slide.section_slider_btn_plink|staticPage) }}">{{ slide.section_slider_btn_label }}</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    			</li>
+                {% endfor %}
+    		</ul>
+    	</div>
+    </div>
+</section>
+
+{% put scripts %}
+<script>
+// Splide
+document.addEventListener( 'DOMContentLoaded', function () {
+    var splide = new Splide( '.slider-{{ data.section_slider_id|slug }}', {
+    	type: 'fade',
+    	perPage: 1,
+    	autoplay: {{ data.section_slider_autoplay == true ? 'true' : 'false' }},
+    	pauseOnHover: false,
+    	pagination: false,
+    	focus: 'center',
+    	trimSpace: false,
+    	rewind: true,
+    	cover  : true,
+    	height : '60rem',
+        video: {
+            hideControls: true,
+            loop: true,
+        	autoplay: {{ data.section_slider_videoAutoplay == true ? 'true' : 'false' }},
+        	mute    : true,
+        },
+        playerOptions: {
+            youtube: {
+                cc_lang_pref: 'en',
+            },
+            vimeo: {
+                byline: true,
+            },
+            htmlVideo: {
+                playsinline: true, 
+            },
+        },
+    	breakpoints: {
+    		768: {
+    			height : '30rem',
+    		}
+    	}
+    } ).mount( window.splide.Extensions );
+});
+</script>
+{% endput %}
+
+{% put styles %}
+<style>
+/* Video */
+video {
+    object-fit: cover;
+}
+
+/* Animation */
+.splide__slide.is-active.is-visible .fadeInRight {
+	animation-duration: 1.5s;
+	animation-fill-mode: both;
+    animation-name: fadeInRight;
+}
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translate3d(100%,0,0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+
+.splide__slide.is-active.is-visible .fadeInLeft {
+	animation-duration: 1.5s;
+	animation-fill-mode: both;
+    animation-name: fadeInLeft;
+}
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translate3d(-100%,0,0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+
+.splide__slide.is-active.is-visible .fadeIn {
+	animation-duration: 1.5s;
+	animation-delay: 1s;
+	animation-fill-mode: both;
+    animation-name: fadeIn;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.splide__slide.is-active.is-visible .flipInX {
+	animation-duration: 1.5s;
+	animation-delay: 1.5s;
+	animation-fill-mode: both;
+    animation-name: flipInX;
+    backface-visibility: visible!important;
+}
+@keyframes flipInX {
+    0% {
+        animation-timing-function: ease-in;
+        opacity: 0;
+        transform: perspective(400px) rotateX(90deg);
+    }
+    40% {
+        animation-timing-function: ease-in;
+        transform: perspective(400px) rotateX(-20deg);
+    }
+    60% {
+        opacity: 1;
+        transform: perspective(400px) rotateX(10deg);
+    }
+    80% {
+        transform: perspective(400px) rotateX(-5deg);
+    }
+    100% {
+        transform: perspective(400px);
+    } 
+}
+</style>
+{% endput %}

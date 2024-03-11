@@ -1,0 +1,57 @@
+description = "Projects Block"
+
+[viewBag]
+==
+<section class="{{ data.section_projects_id|slug }} pt-6">
+    <div class="container">
+        {% if data.section_projects_overheading or data.section_projects_heading %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-12 text-center" data-sal="fade" data-sal-duration="2000">
+                <div class="text-primary text-uppercase fs-7 pb-4 decorated w-7 mx-auto"><span>{{ data.section_projects_overheading }}</span></div>
+                <h2 class="mb-2 display-4">{{ data.section_projects_heading }}</h2>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row g-0">
+            {% for project in data.section_projects %}
+            <div class="col-md-12 mb-6">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 {{ (loop.index0 % 2 == 1) ? 'order-md-2' : 'order-md-1' }} bg-size-cover bg-position-center h-8 h-md-10" style="background-image: url('{{ project.section_project_image|media|resize(550, 1200, { mode: 'crop' }) }}');" data-sal="{{ (loop.index0 % 2 == 1) ? 'slide-left' : 'slide-right' }}" data-sal-duration="2000"></div>
+                    <div class="col-md-7 position-relative {{ (loop.index0 % 2 == 1) ? 'order-md-1' : 'order-md-2'  }}" data-sal="{{ (loop.index0 % 2 == 1) ? 'slide-right' : 'slide-left' }}" data-sal-duration="2000">
+                        <div class="{{ (loop.index0 % 2 == 1) ? 'pt-5 pe-0 pe-lg-5 pe-md-4 text-md-end' : 'pt-5 ps-0 ps-lg-5 ps-md-4' }}">
+                            <div class="group px-6 px-lg-4">
+                                <div class="bg-primary w-6 group-hover-w-7 h-px position-absolute top-0 {{ (loop.index0 % 2 == 1) ? 'end-n5' : 'start-n5' }} d-none d-md-block transition-30"></div>
+                                <div class="position-relative">
+                                    <div class="mb-8">
+                                        <span class="d-block text-uppercase fw-bold">{{ project.section_project_overtitle|raw }}</span>
+                                        <h2 class="mb-4 display-3">
+                                            {% if project.section_project_btn_link is not empty %}
+                                            <a href="{{ project.section_project_btn_clink ? project.section_project_btn_clink : (project.section_project_btn_plink|staticPage) }}" class="text-dark text-primary-hover pb-2">
+                                            {% endif %}
+                                            {{ project.section_project_title|raw }}
+                                            {% if project.section_project_btn_link is not empty %}</a>{% endif %}
+                                        </h2>
+                                        {{ project.section_project_desc|raw }}
+                                    </div>
+                                    {% if project.section_project_btn_link is not empty %}
+                                    <div class="">
+                                    <a href="{{ project.section_project_btn_clink ? project.section_project_btn_clink : (project.section_project_btn_plink|staticPage) }}" class="text-primary text-uppercase mb-8">
+                                        {{ project.section_project_btn_label }}
+                                    </a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% if data.section_projects_btn_link is not empty %}
+            <div class="col-md-12 mb-6 d-flex justify-content-center">
+                <a href="{{ data.section_projects_btn_clink ? data.section_projects_btn_clink : (data.section_projects_btn_plink|staticPage) }}" class="btn btn-primary">{{ data.section_projects_btn_label }}</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

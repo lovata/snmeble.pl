@@ -1,0 +1,24 @@
+description = "Breadcrumbs"
+
+[viewBag]
+
+[staticBreadcrumbs]
+==
+{% if breadcrumbs %}
+<nav aria-label="breadcrumb">
+    <ol class="list-unstyled list-inline text-uppercase mb-3 fs-7">
+        <li class="list-inline-item" {{ breadcrumb.isActive ? 'aria-current="page"' }}>
+            <a href="{{ 'index'|staticPage }}" class="{{ breadcrumb.isActive ? 'active text-primary' : 'text-dark text-primary-hover' }}">
+                <i class="bi bi-house me-2"></i> <i class="icofont-simple-right"></i>
+            </a>
+        </li>
+        {% for breadcrumb in breadcrumbs %}
+        <li class="list-inline-item" {{ breadcrumb.isActive ? 'aria-current="page"' }}>
+            <a href="{{ breadcrumb.url }}" class="{{ breadcrumb.isActive ? 'active text-primary' : 'text-dark text-primary-hover' }}">
+                {{ breadcrumb.title }} {% if not loop.last %}<i class="bi bi-chevron-right"></i>{% endif %}
+            </a>
+        </li>
+        {% endfor %}
+    </ol>
+</nav>
+{% endif %}

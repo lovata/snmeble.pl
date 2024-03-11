@@ -1,0 +1,93 @@
+description = "Static Layout"
+
+[staticPage]
+useContent = 0
+default = 1
+
+[localePicker]
+forceUrl = 0
+
+[searchInput]
+useAutoComplete = 0
+autoCompleteResultCount = 5
+showProviderBadge = 1
+searchPage = "search.htm"
+
+[contactForm]
+loadJS = 1
+==
+<?php
+function onStart()
+{
+    $this['search_query'] = get('q', $default = null);
+    // current page url
+    $parent = $this->page['apiBag']['staticPage']->getParent();
+    $url = $this->page['apiBag']['staticPage']['viewBag']['url'];
+
+    $currentPage = null;
+    if($parent) {
+        $children = $parent->getChildren();
+        foreach( $children as $key => $page){
+            if($page['viewBag']['url'] == $url) $currentPage = $key;
+        }
+
+        // previous page
+        if ( array_key_exists($currentPage - 1, $children) ) {
+            $this['prev_url'] = $children[$currentPage - 1]['viewBag']['url'];
+            $this['prev_title'] = $children[$currentPage -1 ]['viewBag']['title'];
+        }
+
+        if ( array_key_exists($currentPage + 1, $children) ) {
+            $this['next_url'] = $children[$currentPage + 1]['viewBag']['url'];
+            $this['next_title'] = $children[$currentPage + 1]['viewBag']['title'];
+        }
+    // parent page
+    $this['parent_title'] = $parent['viewBag']['title'];
+    $this['parent_url'] = $parent['viewBag']['url'];
+    }
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="{{ activeLocale }}">
+    <head>
+        {% partial 'site/meta' %}
+        {% partial 'site/css' %}
+    </head><!--/#head-->
+    <body class="page-{{ this.page.id }} layout-{{ this.page.layout }}">
+        <!--Google Analytics -->
+        {{ this.theme.google_analytics|raw }}
+        <!-- Loader -->
+        {% partial 'site/loader' %}
+        <!-- Main Wrapper -->
+        <div class="main-wrapper overflow-hidden">
+            <!-- Wrapper -->
+            <div class="page-wrapper">
+                <!-- Header -->
+                {% partial 'site/header' %}
+                <!-- Blocks Repeater -->
+                {repeater name="sections" groups="~/themes/ketikidis-architect/meta/blocks.yaml" tab="Blocks"}
+                    {variable name="_blocks" type="text"}{/variable}
+                {/repeater}
+                <!-- Render Blocks -->
+                {% for section in sections %}
+                    {% partial 'blocks/' ~ section._group data=section %}
+                {% endfor %}
+                <!-- Page Navigation -->
+                {% partial "site/navigation" %}
+                <!-- Page -->
+                <div class="container">
+                    {% page %}
+                </div>
+            </div>
+            <!-- Footer -->
+            {% partial 'site/footer' %}
+            <!-- Scroll to top -->
+            {% partial 'site/scrolltop' %}
+        </div>
+        <!-- Scripts -->
+        {% partial 'site/scripts' %}
+        <!-- Core CSS -->
+        {% styles %}
+    </body><!--/#body-->
+</html>

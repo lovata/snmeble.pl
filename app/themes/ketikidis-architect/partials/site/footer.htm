@@ -1,0 +1,131 @@
+description = "Footer"
+
+[viewBag]
+
+[staticMenu]
+code = "main-menu"
+
+[staticMenu staticMenuProjects]
+code = "projects"
+
+[staticMenu staticMenuCategories]
+code = "blog-categories"
+==
+<footer class="bg-dark pt-6 fs-7">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg col-md-12" data-sal="slide-up" data-sal-duration="400">
+                <div class="mb-4">
+                    <a class="navbar-brand d-block mb-4" href="{{ 'index'|staticPage }}">
+                        <img class="d-block w-6 w-sm-auto" src="{{ this.theme.site_logo_footer|media|resize(false, 60, { mode: 'auto' }) }}" alt="{{ this.theme.site_name }}">
+                    </a>
+                    <p class="text-white opacity-50 mb-4">{{ 'Architect theme is everything you ever wished to have a product to build multipurpose websites.'|_ }}</p>
+                    <ul class="list-inline list-unstyled mt-4">
+                        {% for social in this.theme.social_media %}
+                        <li class="list-inline-item me-1 my-1">
+                            <a href="{{ social.social_media_url }}" class="position-relative rounded-circle btn btn-outline-light opacity-50 opacity-100-hover transition-30 p-3">
+                                <i class="position-absolute top-50 start-50 translate-middle fs-7 {{ social.social_media_icon }}"></i>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg col-md-4" data-sal="slide-up" data-sal-duration="1200">
+                <div class="mb-4 ms-lg-4">
+                    <h2 class="text-white fs-5 fw-bold mb-4">{{ 'Menu'|_ }}</h2>
+                    <ul class="list-unstyled mb-4">
+            		    {% set items=staticMenu.menuItems %}
+            		    {% if staticMenu.menuItems %}
+        				{% for item in items %}
+                        <li class="">
+                            <a class="text-white opacity-50 opacity-100-hover transition-30" href="{{ item.url }}">
+                                <i class="bi bi-arrow-right text-white me-2 fs-9"></i>{{ item.title|_ }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg col-md-4" data-sal="slide-up" data-sal-duration="1600">
+                <div class="mb-4 ms-lg-4">
+                    <h2 class="text-white fs-5 fw-bold mb-4">{{ 'Projects'|_ }}</h2>
+                    <ul class="list-unstyled mb-4">
+            		    {% set items=staticMenuProjects.menuItems %}
+            		    {% if staticMenuProjects.menuItems %}
+        				{% for item in items %}
+                        <li class="">
+                            <a class="text-white opacity-50 opacity-100-hover transition-30" href="{{ item.url }}">
+                                <i class="bi bi-arrow-right text-white me-2 fs-9"></i>{{ item.title|_ }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg col-md-4" data-sal="slide-up" data-sal-duration="800">
+                <div class="mb-4 ms-lg-4">
+                    <h2 class="text-white fs-5 fw-bold mb-4">{{ 'Categories'|_ }}</h2>
+                    <ul class="list-unstyled mb-4">
+            		    {% set items=staticMenuCategories.menuItems %}
+            		    {% if staticMenuCategories.menuItems %}
+        				{% for item in items %}
+                        <li class="">
+                            <a class="text-white opacity-50 opacity-100-hover transition-30" href="{{ item.url }}">
+                                <i class="bi bi-arrow-right text-white me-2 fs-9"></i>{{ item.title|_ }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg col-md-12" data-sal="slide-up" data-sal-duration="2000">
+                <div class="mb-4 ms-lg-4">
+                    <h2 class="text-white fs-5 fw-bold mb-4">{{ 'Contact Us'|_ }}</h2>
+                    <ul class="list-unstyled text-white opacity-50 mb-4">
+                        <li class="d-flex mb-3">
+                            <i class="align-self-start bi bi-pin-angle"></i>
+                            <span class="ps-4">{{ '787, 7th Avenue New York, Across the market, USA - 55438'|_ }}</span>
+                        </li>
+                        <li class="d-flex mb-3">
+                            <i class="align-self-start bi bi-telephone"></i>
+                            <span class="ps-4">{{ '(+30) 123 456 789'|_ }}</span>
+                        </li>
+                        <li class="d-flex mb-3">
+                            <i class="align-self-start bi bi-alarm"></i>
+                            <span class="ps-4">{{ '8.00AM - 6:00PM'|_ }}</span>
+                        </li>
+                        <li class="d-flex mb-3">
+                            <i class="align-self-start bi bi-envelope"></i>
+                            {% set email = this.theme.site_email %}
+                            {% set email_name = email|split('@')|first %}
+                            {% set email_tld = email|split('.')|last %}
+                            {% set email_domaintld = email|split('@')|last %}
+                            {% set email_domain = email_domaintld|split('.')|first %}
+                            <a href="#" class="ps-4 text-white cryptedmail" data-name="{{ email_name }}" data-domain="{{ email_domain }}" data-tld="{{ email_tld }}" onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-dark-800 py-4">
+        <div class="container">
+            <div class="col-md-12 d-md-flex justify-content-center text-white fs-8 opacity-50 mt-3">
+                <p>{{ this.theme.site_name }} © {{ "now"|date("Y") }}.</p> {{ this.theme.site_copyright|raw }}
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% put styles %}
+<style>
+.cryptedmail:after {
+    content: attr(data-name) "@" attr(data-domain) "." attr(data-tld); 
+}
+</style>
+{% endput %}

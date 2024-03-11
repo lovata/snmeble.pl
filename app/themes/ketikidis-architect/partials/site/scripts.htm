@@ -1,0 +1,42 @@
+description = "Scripts"
+==
+<!-- Vendor JS -->
+<script src="{{ [
+    '@jquery',
+    'assets/vendor/bootstrap/js/bootstrap.bundle.min.js',
+    'assets/vendor/scroll-out/scroll-out.min.js',
+    'assets/vendor/sal/js/sal.js',
+    'assets/vendor/jarallax/js/jarallax.min.js',
+    'assets/vendor/jarallax/js/jarallax-video.min.js',
+    'assets/vendor/purecounter/purecounter_vanilla.js',
+    'assets/vendor/splide/js/splide.min.js',
+    'assets/vendor/splide/js/splide-extension-video.min.js',
+    'assets/vendor/glightbox/js/glightbox.min.js'
+    ]|theme }}"></script>
+
+<!-- Scripts -->
+<script>
+// Scroll-out
+ScrollOut({
+	threshold: 0.4
+});
+        
+// Sal
+sal({
+    once: true,
+	threshold: 0.3,
+});
+</script>
+
+<!-- Framework extras -->
+{% framework extras %}
+
+<!-- Scripts -->
+{% scripts %}
+
+<!-- Custom JS -->
+{% if this.theme.custom_js %}
+<script>
+{{ this.theme.custom_js|raw }}
+</script>
+{% endif %}

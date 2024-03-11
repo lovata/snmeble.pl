@@ -1,0 +1,33 @@
+description = "Post Tags"
+
+[viewBag]
+
+[tagList]
+fetchPosts = 0
+orderBy = "name asc"
+postSlug = "{{ :slug }}"
+limit = 0
+enableTagFilter = "never"
+tagPage = "blog/tag"
+tagsPage = "blog/tag"
+==
+<div class="mt-5 mb-4">
+    {% set tags = tagList.tags %}
+    {% if tags | length %}
+    <div class="" id="{{ tagSectionId }}">
+        {% for item in tags %}
+        {% set postCount = item.posts_count %}
+        <a href="{{ item.url }}" class="btn border border-primary-hover fs-9 px-2 py-1 mb-2 position-relative {{ not loop.last ? 'me-2' }}">
+            {{ item.name }}
+            {% if postCount %}
+                <span class="position-absolute top-n2 end-n1 border badge rounded-pill bg-light text-dark">{{ postCount }}</span>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="mt-4 me-4">
+    {{ "ginopane.blogtaxonomy::lang.components.tag_list.no_tags_message" | trans }}
+    </div>
+    {% endif %}
+</div>

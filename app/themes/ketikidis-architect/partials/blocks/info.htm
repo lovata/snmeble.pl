@@ -1,0 +1,25 @@
+description = "Info Block"
+
+[viewBag]
+==
+<section class="{{ data.section_info_id|slug }} py-6 bg-light">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8" data-sal="fade" data-sal-duration="2000">
+                <div class="row">
+                    {% set sal = ['fade-right', 'fade-left'] %}
+                    {% set border = ['border-end', 'border-end', ''] %}
+                    {% set counter = loop.length - 1 %}
+                    {% for info in data.section_info %}
+                    <div class="col-md-4 text-center py-4 {{ border[ loop.index0 % 3 ] }} {{ loop.index > 3 ? 'border-top' }}" data-sal="{{ sal[ loop.index0 % 2 ] }}" data-sal-duration="2000">
+                        <div class="mb-3">
+                            <span class="fs-3 text-primary {{ info.section_info_icon }}"></span>
+                        </div>
+                        {{ info.section_info_text|raw }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

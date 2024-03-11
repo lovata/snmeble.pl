@@ -1,0 +1,26 @@
+static-pages:
+    index:
+        index-home-page-hero: {  }
+        index-home-page-video-hero: {  }
+        index-home-page-youtube-hero: {  }
+        index-home-page-vimeo-hero: {  }
+        index-home-page-image-slider: {  }
+        index-home-page-video-slider: {  }
+        index-home-page-image-video-slider: {  }
+        index-home-page-youtube-slider: {  }
+        index-home-page-vimeo-slider: {  }
+    about: {  }
+    team: {  }
+    services: {  }
+    projects:
+        projects-project-one: {  }
+        projects-project-two: {  }
+        projects-project-three: {  }
+        projects-project-four: {  }
+        projects-project-five: {  }
+        projects-project-six: {  }
+        projects-project-seven: {  }
+        projects-project-eight: {  }
+        projects-project-nine: {  }
+        projects-project-ten: {  }
+    contact: {  }

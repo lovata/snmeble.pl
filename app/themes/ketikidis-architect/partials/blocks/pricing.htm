@@ -1,0 +1,47 @@
+description = "Pricing Blocks"
+
+[viewBag]
+==
+<section class="{{ data.section_pricing_id|slug }} py-6 bg-light">
+    <div class="container">
+        {% if data.section_pricing_overheading or data.section_pricing_heading %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center" data-sal="fade" data-sal-duration="2000">
+                <div class="text-primary text-uppercase fs-7 pb-4 decorated w-7 mx-auto"><span>{{ data.section_pricing_overheading }}</span></div>
+                <h2 class="mb-2 display-4">{{ data.section_pricing_heading }}</h2>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row">
+            {% set sal = ['flip-left','flip-up','flip-right'] %}
+            {% for price in data.section_pricing %}
+            <div class="col-md-4" data-sal="{{ sal[ loop.index0 % 3 ] }}" data-sal-duration="2000">
+                <div class="group bg-white shadow-sm shadow-hover mb-4 transition-30">
+                    <div class="w-100 h-7 bg-size-cover bg-position-center" style="background-image: url('{{ price.section_pricing_image|media|resize(600, 400, { mode: 'crop' }) }}');"></div>
+                    <div class="p-4">
+                        <h3 class="text-uppercase fs-5 group-hover-text-primary pb-3 transition-30">{{ price.section_pricing_title }}</h3>
+                        <ul class="list-unstyled mb-2">
+                            {% for feature in price.section_pricing_features %}
+                            <li class="mb-4">
+                                <span class="bi bi-check-square text-primary me-2"></span>
+                                {{ feature.section_pricing_feature }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="d-lg-flex align-items-center w-100 bg-light py-2 px-4">
+                        <span class="d-block w-100 text-dark py-2 py-lg-0">
+                            <sup class="fs-4">{{ price.section_pricing_currency }}</sup>
+                            <span class="fs-1 fw-bold">{{ price.section_pricing_price }}</span>
+                            <sub class="fs-6">{{ price.section_pricing_duration }}</sub>
+                        </span>
+                        <p class="w-100 mb-0">
+                            <a href="{{ data.section_pricing_btn_clink ? data.section_pricing_btn_clink : (data.section_pricing_btn_plink|staticPage) }}" class="btn btn-primary d-block">{{ price.section_pricing_btn_label }}</a>
+                        </p>
+                    </div>
+                </div>
+            </div> 
+            {% endfor %}
+        </div>
+    </div>
+</section>

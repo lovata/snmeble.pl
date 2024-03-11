@@ -1,0 +1,31 @@
+description = "Services Block"
+
+[viewBag]
+==
+<section class="{{ data.section_services_id|slug }} py-6">
+    <div class="container">
+        <div class="row">
+            {% set sal = ['slide-right','slide-down','slide-down','slide-left','slide-right','slide-up','slide-up','slide-left'] %}
+            {% set delay = ['0','150','300','450'] %}
+            {% for service in data.section_services %}
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch position-relative" data-sal="{{ sal[ loop.index0 % 8 ] }}" data-sal-delay="{{ delay[ loop.index0 % 4 ] }}" data-sal-duration="2000">
+                {% if service.section_service_link is not empty %}
+                <a class="group " href="{{ service.section_service_clink ? service.section_service_clink : (service.section_service_plink|staticPage) }}">
+                {% endif %}
+                <div class="d-block h-100 text-center px-3 pb-4">
+                    <div class="icon d-flex justify-content-center align-items-center">
+                        <i class="text-primary display-3 group-hover-text-dark transition-30 {{ service.section_service_icon }}"></i>
+                    </div>
+                    <div class="py-md-4">
+                        <h3 class="fs-5 text-dark group-hover-text-primary transition-30">{{ service.section_service_title }}</h3>
+                        <p class="text-body">{{ service.section_service_desc }}</p>
+                    </div>
+                </div>
+                {% if service.section_service_link is not empty %}
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

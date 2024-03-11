@@ -1,0 +1,51 @@
+description = "Default Layout"
+
+[staticPage]
+useContent = 0
+default = 0
+
+[localePicker]
+forceUrl = 0
+
+[searchInput]
+useAutoComplete = 0
+autoCompleteResultCount = 5
+showProviderBadge = 1
+searchPage = "search.htm"
+
+[contactForm]
+loadJS = 1
+==
+<!DOCTYPE html>
+<html lang="{{ activeLocale }}">
+    <head>
+        {% partial 'site/meta' %}
+        {% partial 'site/css' %}
+    </head><!--/#head-->
+    <body class="page-{{ this.page.id }} layout-{{ this.page.layout }}">
+        <!--Google Analytics -->
+        {{ this.theme.google_analytics|raw }}
+        <!-- Loader -->
+        {% partial 'site/loader' %}
+        <!-- Main Wrapper -->
+        <div class="main-wrapper overflow-hidden">
+            <!-- Wrapper -->
+            <div class="page-wrapper">
+                <!-- Header -->
+                {% partial 'site/header' %}
+                <!-- Pageheader -->
+                {% partial 'site/pageheader' %}
+                <!-- Page -->
+                {% page %}
+            </div>
+            <!-- Footer -->
+            {% partial 'site/footer' %}
+            <!-- Scroll to top -->
+            {% partial 'site/scrolltop' %}
+        </div>
+        <!-- Core CSS -->
+        {% styles %}
+        <!-- Scripts -->
+        {% partial 'site/scripts' %}
+    </body><!--/#body-->
+</html>

@@ -1,0 +1,29 @@
+description = "Css"
+
+[viewBag]
+==
+<!-- Vendor CSS -->
+<link href="{{ [
+    'assets/vendor/bootstrap-icons/bootstrap-icons.css',
+    'assets/vendor/animate/animate.min.css',
+    'assets/vendor/sal/css/sal.css',
+    'assets/vendor/jarallax/css/jarallax.css',
+    'assets/vendor/splide/css/splide.min.css',
+    'assets/vendor/splide/css/splide-extension-video.min.css',
+    'assets/vendor/glightbox/css/glightbox.min.css'
+    ]|theme }}" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="{{ ['assets/scss/main.scss']|theme }}" rel="stylesheet">
+
+<!-- Fonts -->
+{% if this.theme.font_gfonts %}
+{{ this.theme.font_gfonts|raw }}
+{% endif %}
+
+<!-- Custom CSS -->
+{% if this.theme.custom_css %}
+<style>
+{{ this.theme.custom_css }}
+</style>
+{% endif %}

@@ -1,0 +1,21 @@
+description = "Counters Section"
+
+[viewBag]
+==
+<section class="{{ data.section_counters_id|slug }} py-6">
+    <div class="container">
+        <div class="row pt-md-5">
+            {% set sal = ['flip-up','flip-left','flip-down','flip-right'] %}
+            {% for counter in data.section_counters %}
+            <div class="col-sm-6 col-lg-3 justify-content-center" data-sal="{{ sal[ loop.index0 % 4 ] }}" data-sal-duration="2000">
+                <div class="my-md-2 my-3">
+                    <div class="text-muted d-flex align-items-center {{ loop.last ? '' : 'border-end' }}">
+                        <div class="purecounter text-primary display-4 fw-normal my-4" data-purecounter-start="0" data-purecounter-end="{{ counter.section_counter_number }}"></div>
+                        <span class="d-block px-3 text-uppercase">{{ counter.section_counter_title|raw }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

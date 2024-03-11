@@ -1,0 +1,97 @@
+description = "Blog Posts"
+
+[viewBag]
+==
+<div class="row g-0">
+    {% for post in posts %}
+    <div class="col-md-12 mb-4">
+        <div class="row g-lg-0 align-items-center group">
+            <div class="col-sm-5 {{ (loop.index0 % 2 == 1) ? 'order-md-2' : 'order-md-1' }}" data-sal="{{ (loop.index0 % 2 == 1) ? 'slide-left' : 'slide-right' }}" data-sal-duration="2000">
+                {% if post.featured_images.count %}
+                <a class="d-block position-relative mb-3" href="{{ post.url }}">
+                    <img class="w-100 img-fluid" src="{{ post.featured_images.first.getThumb(450, 500, 'crop') }}" width="450" height="500" alt="{{ post.title }}" loading="lazy">
+                    <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100 bg-dark-200 opacity-0 group-hover-opacity-25 transition-30"></div>
+                    <div class="d-flex flex-column justify-content-center align-items-center p-3 position-absolute top-0 {{ (loop.index0 % 2 == 1) ? 'end-0' : 'start-0' }} opacity-0 text-white text-uppercase lh-1 group-hover-opacity-100 transition-30">
+                        <div class="fw-bold fs-2">{{ post.published_at|date('d') }}</div>
+                        <div class="fs-6">{{ post.published_at|date('M') }}</div>
+                    </div>
+                    <div class="p-3 position-absolute bottom-0 {{ (loop.index0 % 2 == 1) ? 'end-0' : 'start-0' }} opacity-0 text-white text-uppercase lh-1 fw-bold group-hover-opacity-100 transition-30">
+                        <div class="fs-8">{{ post.user.first_name}}</div>
+                    </div>
+                </a>
+                {% endif %}
+            </div>
+            <div class="col-sm-7 position-relative {{ (loop.index0 % 2 == 1) ? 'order-md-1' : 'order-md-2'  }}" data-sal="{{ (loop.index0 % 2 == 1) ? 'slide-right' : 'slide-left' }}" data-sal-duration="2000">
+                <div class="pt-md-5 {{ (loop.index0 % 2 == 1) ? 'pe-0 pe-md-5 text-md-end' : 'ps-0 ps-md-5' }}">
+                    <div class="mb-4 px-lg-4">
+                        <div class="bg-primary w-6 group-hover-w-7 h-px position-absolute top-0 {{ (loop.index0 % 2 == 1) ? 'end-n5' : 'start-n5' }} d-none d-md-block transition-30"></div>
+                        <div class="position-relative">
+                            <div class="mb-3">
+                                <div class="mb-1">
+                                    {% if post.categories.count %}
+                                    {% for category in post.categories %}
+                                    <a class="fs-8 text-muted text-uppercase text-primary-hover transition-30" href="{{ category.url }}">{{ category.name }}{{ not loop.last ? ',' }}</a>
+                                    {% endfor %}
+                                    {% endif %}
+                                    {% if this.theme.blog_comments %}
+                                    <span class="ms-3">
+                                        <i class="text-muted bi bi-chat me-1"></i>
+                                        <a class="fs-8 text-muted text-uppercase text-primary-hover transition-30" href="{{ post.url }}#disqus_thread" data-disqus-identifier="{{ post.id }}"></a>
+                                    </span>
+                                    {% endif %}
+                                </div>
+                                <h2 class="mb-3 display-6 fw-normal">
+                                    {% set result = result %}
+                                    <a class="text-dark text-primary-hover pb-2" href="{{ post.url }}">{{ post.title }}</a>
+                                </h2>
+                                <p>{{ html_limit(post.summary, 160)|striptags|raw }}</p>
+                            </div>
+                            <a class="d-block fs-7 text-primary text-uppercase" href="{{ post.url }}">{{ 'Readmore'|_ }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-md-12 mb-4">
+        <p>{{ blogPosts.noPostsMessage }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% if posts.lastPage > 1 %}
+<div class="row">
+    <div class="col mt-4">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center flex-wrap m-0">
+                {% if posts.currentPage > 1 %}
+                <li class="page-item me-2">
+                    <a class="d-flex justify-content-center align-items-center btn btn-outline-primary rounded-circle p-0 w-5 h-5" href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage-1) }) }}" tabindex="-1" aria-label="Previous">
+                    <i class="bi bi-chevron-left"></i>
+                    <span class="visually-hidden-focusable">Previous</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% for page in 1..posts.lastPage %}
+                <li class="page-item me-2">
+                    <a class="{{ posts.currentPage == page ? 'active' : null }} d-flex justify-content-center align-items-center btn btn-outline-primary rounded-circle p-0 w-5 h-5" href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }} <span class="visually-hidden-focusable">(current)</span></a>
+                </li>
+                {% endfor %}
+                {% if posts.lastPage > posts.currentPage %}
+                <li class="page-item">
+                    <a class="d-flex justify-content-center align-items-center btn btn-outline-primary rounded-circle p-0 w-5 h-5" href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage+1) }) }}" aria-label="Next">
+                    <i class="bi bi-chevron-right"></i>
+                    <span class="visually-hidden-focusable">Next</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endif %}
+
+{% if this.theme.blog_comments %}
+<script id="dsq-count-scr" src="//{{ this.theme.blog_comments }}.disqus.com/count.js" async></script>
+{% endif %}

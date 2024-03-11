@@ -1,0 +1,26 @@
+items:
+    -
+        title: Projects
+        nesting: 1
+        type: static-page
+        code: ''
+        reference: projects
+        replace: 1
+        viewBag:
+            locale:
+                el:
+                    title: ''
+                    url: ''
+                it:
+                    title: ''
+                    url: ''
+                fr:
+                    title: ''
+                    url: ''
+                de:
+                    title: ''
+                    url: ''
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+name: Projects

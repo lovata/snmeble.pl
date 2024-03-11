@@ -1,0 +1,73 @@
+description = "Contact Block"
+==
+<section class="{{ data.section_contact_id|slug }} py-6">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8" data-sal="fade" data-sal-duration="2000">
+                <div class="confirm-contact-container text-success" role="alert""></div>
+                <form  class="bg-light p-5" id="contact-form" novalidate
+                data-request="{{ contactForm }}::onMailSend"
+                data-request-update="'{{ contactForm }}::confirm': '.confirm-contact-container'"
+                {% if contactForm.enableFileUpload %}
+                data-request-files
+                {% endif %}
+                data-request-validate data-request-flash
+                >
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="{{ 'John Smith'|_ }}" required>
+                        <label class="form-label" for="name">{{ label.name|_ }}:</label>
+                        <div class="text-danger mt-1 fs-7" data-validate-for="name"></div>
+                    </div>
+                    {% if contactForm.enablePhoneNumber %}
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="{{ '(+30) 123 456 789'|_ }}" required>
+                        <label class="form-label" for="phone_number">{{ label.phone_number|_ }}:</label>
+                        <div class="text-danger mt-1 fs-7" data-validate-for="phone_number"></div>
+                    </div>
+                    {% endif %}
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="{{ 'myemail@email.com'|_ }}" required>
+                        <label class="form-label" for="email">{{ label.email|_ }}:</label>
+                        <div class="text-danger mt-1 fs-7" data-validate-for="email"></div>
+                    </div>
+                    {% if contactForm.enableSubject %}
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="{{ 'Short title'|_ }}">
+                        <label class="form-label" for="subject">{{ label.subject|_ }}:</label>
+                        <div class="text-danger mt-1 fs-7" data-validate-for="subject"></div>
+                    </div>
+                    {% endif %}
+                    {% if contactForm.enableFileUpload %}
+                    <div class="form-group mb-3">
+                        <label for="attachment" class="visually-hidden form-label">{{ label.attachment|_ }}</label>
+                        <input class="form-control" type="file" id="attachment" name="attachment">
+                        <div class="text-danger mt-1 fs-7" data-validate-for="attachment"></div>
+                    </div>
+                    {% endif %}
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control h-7" id="message" name="message_content" placeholder="{{ 'Detail message'|_ }}" required></textarea>
+                        <label class="form-label" for="message">{{ label.message|_ }}:</label>
+                        <div class="text-danger mt-1 fs-7" data-validate-for="message_content"></div>
+                    </div>
+                    {% if contactForm.mailgunSubscribeExist %}
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="hidden" value="true" id="confirm_subscribe" name="confirm_subscribe">
+                        <label class="form-check-label" for="confirm_subscribe" name="maillist_subscribe">{{ label.maillist|_ }}</label>
+                        <div class="text-danger mt-1 fs-7" data-validate-for="confirm_subscribe"></div>
+                    </div>
+                    {% endif %}
+                    <div class="d-flex flex-wrap align-items-center justify-content-between mt-3">
+                        <button class="btn btn-primary py-3 px-5 mb-3 mb-md-0 me-3">{{ label.button_text|_ }}</button>
+                        {% if contactForm.enableCaptcha %}
+                        <div class="form-group">
+                            <label class="visually-hidden" for="g-recaptcha">{{ label.captcha|_ }}:</label>
+                            <div class="g-recaptcha" data-sitekey="{{ contactForm.captchaSiteKey }}"></div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+                <h2 class="text-center fs-3 mt-5">{{ 'Do not hesitate to send us a message. We will reply you as soon as possible'|_ }}</h2>
+            </div>
+        </div>
+    </div>
+</section>

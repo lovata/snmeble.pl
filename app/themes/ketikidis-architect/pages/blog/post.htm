@@ -1,0 +1,128 @@
+title = "Blog Post"
+url = "/blog/post/:slug?"
+layout = "default"
+is_hidden = 0
+
+[viewBag]
+localeUrl[gr] = "/blog-post"
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = "blog/category"
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "blog/category"
+
+[registerVisit]
+
+[relatedPosts]
+slug = "{{ :slug }}"
+limit = 3
+orderBy = "published_at asc"
+postPage = "blog/post"
+==
+<?php
+public function nextPost($post) {
+
+    // get current cats
+    $postCats = $post->categories->pluck('id')->toArray();
+
+    // Here you need to pass it as we are 
+    // hardcoding category slug in URL so we have no data of category
+
+    // IF YOU DONT WANT CAT COME FROM POST
+    // YOU CAN HARD CODE THEM $postCats = ['2'] 
+    // here 2 is id of category
+
+    // use this cats to scope 
+    $nextPost = $post->isPublished()->applySibling(-1)
+                   ->FilterCategories($postCats)->first();
+
+    // check if next is not availabe then return false
+    if(!$nextPost) {        
+        return false;
+    }
+
+    // create page link here same page
+    $postPage = $this->page->getBaseFileName();
+
+    // set URl so we can direct access .url
+    $nextPost->setUrl($postPage, $this->controller);
+
+    // set Cat URl so we can use it directly if needed
+    $nextPost->categories->each(function($category) {
+        $category->setUrl($this->categoryPage, $this->controller);
+    });
+
+    return $nextPost;
+
+}
+
+public function previousPost($post) {
+
+    // get current cats
+    $postCats = $post->categories->pluck('id')->toArray();
+
+    // IF YOU DONT WANT CAT COME FROM POST
+    // YOU CAN HARD CODE THEM $postCats = ['2'] 
+    // here 2 is id of category
+
+    // use this cats to scope 
+    $prevPost = $post->isPublished()->applySibling(1)
+                   ->FilterCategories($postCats)->first();
+
+    // check if nprevious ext is not availabe then return false
+    if(!$prevPost) {        
+        return false;
+    }
+
+    // create page link here same page
+    $postPage = $this->page->getBaseFileName();
+
+    // set URl so we can direct access .url
+    $prevPost->setUrl($postPage, $this->controller);
+
+    // set Cat URl so we can use it directly if needed
+    $prevPost->categories->each(function($category) {
+        $category->setUrl($this->categoryPage, $this->controller);
+    });
+
+    return $prevPost;
+
+}
+?>
+==
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 mb-4 {{ this.theme.blog_post_layout == 'order-lg-1' ? 'order-lg-2' : 'order-lg-1' }}">
+            {% partial 'blog/post' post = blogPost.post %}
+            {% partial 'blog/navigation' %}
+            {% partial 'blog/post-tags' %}
+            {% if this.theme.blog_post_layout is not empty %}
+            {% partial 'blog/carousel' %}
+            {% if relatedPosts.posts | length %}{% partial 'blog/related' %}{% endif %}
+            {% if this.theme.blog_comments %}{% partial 'blog/comments' %}{% endif %}
+            {% endif %}
+        </div>
+        {% if this.theme.blog_post_layout is not empty %}
+        <div class="col-lg-3 mb-4 {{ this.theme.blog_post_layout }}">
+            {% partial 'blog/categories' %}
+            {% partial 'blog/latest' %}
+            {% partial 'blog/tags' %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% if this.theme.blog_post_layout is empty %}
+{% partial 'blog/carousel' %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 mb-4 {{ this.theme.blog_post_layout == 'order-lg-1' ? 'order-lg-2' : 'order-lg-1' }}">
+            {% if relatedPosts.posts | length %}{% partial 'blog/related' %}{% endif %}
+            {% if this.theme.blog_comments %}{% partial 'blog/comments' %}{% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}

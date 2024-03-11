@@ -1,0 +1,65 @@
+description = "Testimonials Section"
+
+[viewBag]
+==
+<section class="{{ data.section_testimonials_id|slug }} py-6 bg-light">
+    <div class="container">
+        {% if data.section_testimonials_overheading or data.section_testimonials_heading %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center" data-sal="fade" data-sal-duration="2000">
+                <div class="text-primary text-uppercase fs-7 pb-4 decorated w-7 mx-auto"><span>{{ data.section_testimonials_overheading }}</span></div>
+                <h2 class="mb-2 display-4">{{ data.section_testimonials_heading }}</h2>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row" data-sal="fade" data-sal-duration="2000">
+            <div class="col-md-12">
+                <div class="testimonials-{{ data.section_testimonials_id|slug }} splide group">
+                    <div class="splide__track">
+                        <div class="splide__list pt-4 pb-5">
+                		    {% for testimonial in data.section_testimonials %}
+                            <div class="splide__slide">
+                                <div class="d-block position-relative bg-white shadow-sm py-4 px-4">
+                                    <div class="">
+                                        <span class="bi bi-bookmark-star-fill text-primary fs-2 position-absolute top-n3 start-4 z-10"></span>
+                                        <p class="mb-4">{{ testimonial.section_testimonial_text }}</p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-size-cover bg-position-center w-6 h-6 rounded-circle position-relative" style="background-image: url('{{ testimonial.section_testimonial_image|media|resize(80, 80, { mode: 'crop' }) }}')"></div>
+                                            <div class="ps-4">
+                                                <p class="text-dark mb-0 fw-normal fs-5">{{ testimonial.section_testimonial_name }}</p>
+                                                <span class="text-muted">{{ testimonial.section_testimonial_job }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if data.section_testimonials %}
+{% put scripts %}
+<script>
+// Splide
+new Splide( '.testimonials-{{ data.section_testimonials_id|slug }}', {
+	type: 'loop',
+	autoplay: true,
+	pagination: true,
+	arrows: false,
+	perPage: 3,
+	trimSpace: false,
+	gap: '2rem',
+	breakpoints: {
+		768: {
+			perPage: 1,
+		}
+	}
+} ).mount();
+</script>
+{% endput %}
+{% endif %}

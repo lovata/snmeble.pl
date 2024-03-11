@@ -1,0 +1,17 @@
+description = "Pageheader Block"
+
+[viewBag]
+==
+<section class="{{ data.section_pageheader_id|slug }} w-100 h-8 bg-size-cover bg-position-center position-relative jarallax" style="background-image: url('{{ data.section_pageheader_image|media|resize(1920, 1080, { mode: 'crop' }) }}');" data-jarallax data-speed="0.5" data-type="scroll">
+    <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100 bg-dark-100 opacity-25"></div>
+    <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100" style="background: linear-gradient(to top, rgba(255, 255, 255) 0, rgba(255, 255, 255, .8) 20%, rgba(255, 255, 255, 0) 100%);"></div>
+    <div class="container">
+        <div class="row h-8 g-0 align-items-end">
+            <div class="col-md-9 pb-5 position-relative" data-sal="slide-up" data-sal-duration="2000" data-sal-delay="500" data-sal-easing="ease-out-back">
+                {% partial 'site/breadcrumbs' %}
+                {% partial 'site/pagetitle' %}
+                <div class="bg-primary w-5 h-px mt-1"></div>
+            </div>
+        </div>
+    </div>
+</section>

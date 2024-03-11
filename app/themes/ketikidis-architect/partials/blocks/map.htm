@@ -1,0 +1,68 @@
+description = "Map Block"
+
+[viewBag]
+==
+<section class="{{ data.section_map_id|slug }} py-6">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12" data-sal="fade" data-sal-duration="2000">
+                <div id="map" class="w-100 h-8 mb-8"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+var geocoder;
+var map;
+var address = "{{ data.section_map_address }}";
+
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+        zoom: {{ data.section_map_zoom }},
+        center: latlng,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+        },
+        navigationControl: true,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: {{ data.section_map_code|raw }}
+    };
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+    if (geocoder) {
+        geocoder.geocode({
+            'address': address
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                    map.setCenter(results[0].geometry.location);
+
+                    var infowindow = new google.maps.InfoWindow({
+                        content: '<b>' + address + '</b>',
+                        size: new google.maps.Size(150, 50)
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: results[0].geometry.location,
+                        map: map,
+                        title: address
+                    });
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(map, marker);
+                    });
+
+                } else {
+                    alert("No results found");
+                }
+            } else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+    }
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ data.section_map_key }}&libraries=places&sensor=false&language={{ data.section_map_language|lower }}&region={{ data.section_map_region|upper }}&callback=initialize"></script>

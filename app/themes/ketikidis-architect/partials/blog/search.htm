@@ -1,0 +1,25 @@
+description = "Search"
+
+[viewBag]
+==
+<div class="mb-5" {% if (blogPosts.posts and this.theme.blog_posts_animation) or (blogPost.post and this.theme.blog_post_animation) %}data-aos="fade-up" data-aos-duration="1200"{% endif %}
+>
+    <form action="{{ blogSearchInput.searchPage | page }}?q={{ query | url_encode(true) }}" method="get">
+        <div class="ss-search-form">
+            <div class="ss-search-form__input input-group">
+                <input class="form-control form-control-lg display-12 border-2 hover-border-default p-7 {% if (blogPosts.posts and this.theme.blog_posts_style == 'style1') or (searchResults.results and this.theme.blog_posts_style == 'style1') or (blogPost.post and this.theme.blog_post_style == 'style1') %}bg-transparent{% endif %}" name="q" type="text" placeholder="Search" autocomplete="off"
+                    {% if blogSearchInput.useAutoComplete %}
+                        data-track-input
+                        data-request="{{ blogSearchInput }}::onType"
+                        data-request-before-update="document.getElementById('autocomplete-blog-results').classList.add('ss-search-form__results--visible')"
+                        data-request-update="'{{ blogSearchInput }}::autocomplete': '#autocomplete-blog-results'" 
+                    {% endif %}
+                >
+                <div class="input-group-append">
+                    <button class="btn btn-default line-height-none" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            <div class="ss-search-form__results" id="autocomplete-blog-results"></div>
+        </div>
+    </form>
+</div>

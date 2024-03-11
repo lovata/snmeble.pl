@@ -1,0 +1,52 @@
+description = "BlogSection"
+
+[viewBag]
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 3
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "blog/category"
+postPage = "blog/post"
+==
+<section class="{{ data.section_blog_id|slug }} py-6">
+    <div class="container">
+        {% if data.section_blog_overheading or data.section_blog_heading %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center" data-sal="fade" data-sal-duration="2000">
+                <div class="text-primary text-uppercase fs-7 pb-4 decorated w-7 mx-auto"><span>{{ data.section_blog_overheading }}</span></div>
+                <h2 class="mb-2 display-4">{{ data.section_blog_heading }}</h2>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row d-flex">
+            {% set sal = ['flip-left', 'flip-up', 'flip-right'] %}
+            {% set posts = blogPosts.posts %}
+            {% for post in posts %}
+            <div class="col-md-4" data-sal="{{ sal[ loop.index0 % 3 ] }}" data-sal-duration="2000">
+                <div class="justify-content-end mb-4">
+                    {% if post.featured_images.count %}
+                    <a href="{{ post.url }}" class="d-block bg-size-cover bg-position-center w-100 h-7 mb-4" style="background-image: url('{{ post.featured_images.first.getThumb(450, 300, 'crop') }}');"></a>
+                    {% endif %}
+                    <div class="d-flex flex-wrap mb-3 fs-8 text-uppercase text-muted">
+                        <div class="me-3">{{ post.published_at|date('M d, Y') }}</div>
+                        <div class="me-3">{{ post.user.first_name}}</div>
+                        {% if post.categories.count %}
+                        {% for category in post.categories %}
+                        <div><a href="{{ category.url }}" class="text-muted text-primary-hover me-1 transition-30">{{ category.name }}{{ not loop.last ? ',' }}</a></div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <h3 class="fs-5 fw-normal">
+                        <a class="text-dark text-primary-hover" href="{{ post.url }}">{{ post.title }}</a>
+                    </h3>
+                    <p>{{ (html_limit(post.summary|striptags|raw, 100)) ~ '...' }}</p>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-md-4">{{ blogPosts.noPostsMessage }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

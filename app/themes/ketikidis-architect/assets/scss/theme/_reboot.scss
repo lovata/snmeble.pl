@@ -1,0 +1,27 @@
+// Reboot
+//
+
+
+// Blockquote
+
+blockquote {
+  padding: ($spacer * 3);
+  margin: ($spacer * 2) auto;
+  font-weight: $font-weight-bold;
+  border-left: .25rem solid $primary;
+  background-color: $light-200;
+}
+
+
+// Links
+
+a {
+  color: $link-color;
+  text-decoration: $link-decoration;
+  @include transition($transition-base);
+  
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}

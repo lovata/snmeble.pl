@@ -1,0 +1,44 @@
+description = "Team Section"
+
+[viewBag]
+==
+<section class="{{ data.section_team_id|slug }} py-6">
+    <div class="container">
+        {% if data.section_team_overheading or data.section_team_heading %}
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center" data-sal="fade" data-sal-duration="2000">
+                <div class="text-primary text-uppercase fs-7 pb-4 decorated w-7 mx-auto"><span>{{ data.section_team_overheading }}</span></div>
+                <h2 class="mb-2 display-4">{{ data.section_team_heading }}</h2>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row">
+            {% set sal = ['flip-left','flip-up','flip-down','flip-right'] %}
+            {% for member in data.section_team %}
+            <div class="col-sm-6 col-md-6 col-lg-3" data-sal="{{ sal[ loop.index0 % 4 ] }}" data-sal-duration="2000">
+                <div class="mb-5">
+                    <div class="d-flex align-items-stretch justify-content-end position-relative group">
+                        <div class="align-self-stretch bg-size-cover bg-position-top-center w-100 h-8" style="background-image: url('{{ member.section_team_image|media|resize(400, 500, { mode: 'crop' }) }}');"></div>
+                        <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100 bg-dark-200 opacity-0 group-hover-opacity-25 transition-30"></div>
+                        <ul class="list-inline mb-0 p-2 position-absolute top-0 end-0 opacity-0 group-hover-opacity-100 transition-30">
+                            {% for social in member.section_team_social %}
+                            <li class="list-inline-item me-1">
+                                <a class="text-white transition-30" href="{{ social.section_team_social_url }}">
+                                    <i class="{{ social.section_team_social_icon }}"></i>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="d-flex w-100 align-items-center pt-4">
+                        <div class="w-100 px-3">
+                            <h3 class="font-weight-semibold text-uppercase fs-5 mb-3">{{ member.section_team_name }}</h3>
+                            <span class="d-block text-uppercase fs-7 text-primary mb-3">{{ member.section_team_job }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

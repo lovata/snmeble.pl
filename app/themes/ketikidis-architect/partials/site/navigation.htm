@@ -1,0 +1,49 @@
+description = "Page Navigation"
+
+[viewBag]
+==
+{% if prev_title|length > 0 %}   
+<div class="page-nav page-left previous position-fixed top-50 start-n1 z-10" data-scroll>
+    <a class="d-flex justify-content-center align-items-center w-4 w-md-5 h-6 p-0 btn btn-outline-primary rounded-0 group" href="{{ prev_url }}" rel="prev">
+        <i class="fs-8 fs-md-6 bi bi-chevron-left"></i> 
+        <div class="d-md-flex flex-column d-none justify-content-center position-absolute start-100 p-3 border-end border-top border-bottom w-7 h-6 text-muted bg-white z-n10 opacity-0 group-hover-opacity-100 transition-40 pe-none">
+            <span class="d-flex justify-content-start fs-9">{{ "Previous Page"|_ }}</span>
+            <p class="d-flex justify-content-start text-start text-dark mb-0">{{ prev_title }}</p>
+        </div>
+    </a>
+</div>
+    
+{% endif %}
+{% if next_title|length > 0 %}
+<div class="page-nav page-right next position-fixed top-50 end-n1 z-10" data-scroll>
+    <a class="d-flex justify-content-center align-items-center w-4 w-md-5 h-6 p-0 btn btn-outline-primary rounded-0 group" href="{{ next_url }}" rel="next" >
+        <i class="fs-8 fs-md-6 bi bi-chevron-right"></i>
+        <div class="d-md-flex flex-column d-none justify-content-center position-absolute end-100 p-3 border-start border-top border-bottom w-7 h-6 text-muted bg-white z-n10 opacity-0 group-hover-opacity-100 transition-40 pe-none">
+            <span class="d-flex justify-content-end fs-9">{{ "Next Page"|_ }}</span>
+            <p class="d-flex justify-content-end text-end text-dark mb-0">{{ next_title }}</p>
+        </div>
+    </a>
+</div>
+{% endif %}
+
+{% put styles %}
+<style>
+.page-nav {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden; 
+}
+.page-left[data-scroll="in"] {
+    transform: translate3d(-100%, 0, 0);
+}
+.page-right[data-scroll="in"] {
+    transform: translate3d(100%, 0, 0);
+}
+.page-nav[data-scroll="out"] {
+    opacity: 100;
+    visibility: visible; 
+}
+[data-scroll-dir-y="-1"] .page-nav {
+}
+</style>
+{% endput %}
