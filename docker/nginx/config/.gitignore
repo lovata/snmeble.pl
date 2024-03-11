@@ -3,3 +3,4 @@
 !snippets
 !snippets/*
 !snippets/staging/*
+!.htpasswd
