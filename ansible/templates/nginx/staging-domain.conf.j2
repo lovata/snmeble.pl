@@ -39,7 +39,7 @@ server {
 
     include snippets/{{ SHORT_PROJECT_NAME }}/gzip.conf;
     include snippets/{{ SHORT_PROJECT_NAME }}/static.conf;
-    include snippets/{{ SHORT_PROJECT_NAME }}/php.conf;
+    include snippets/{{ SHORT_PROJECT_NAME }}/staging/php.conf;
     include snippets/{{ SHORT_PROJECT_NAME }}/whitelist.conf;
 
     include snippets/{{ SHORT_PROJECT_NAME }}/mailpit.conf;
