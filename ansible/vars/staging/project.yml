@@ -15,3 +15,5 @@ ENABLE_QUEUE: false
 ENABLE_MAILPIT: true
 
 SAIL_XDEBUG_MODE: off
+
+APP_CODE_PATH_CONTAINER: /var/www/html/snmeble.pl/app
