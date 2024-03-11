@@ -1,0 +1,16 @@
+APP_ENV: production
+APP_DEBUG: false
+DEBUGBAR_ENABLED: false
+APP_URL: 'https://snmeble.pl'
+BROADCAST_DRIVER: log
+CACHE_DRIVER: file
+QUEUE_CONNECTION: sync
+SESSION_DRIVER: file
+
+RESTART_POLICY: "unless-stopped"
+
+ENABLE_REDIS: false
+ENABLE_QUEUE: false
+ENABLE_MAILPIT: true
+
+SAIL_XDEBUG_MODE: off
