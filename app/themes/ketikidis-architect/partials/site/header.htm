@@ -2,6 +2,8 @@ description = "Header"
 
 [staticMenu]
 code = "main-menu"
+
+[sitePicker]
 ==
 {% import _self as nav %}
 {% macro render_menu(items) %}
@@ -10,7 +12,7 @@ code = "main-menu"
 {% if not item.viewBag.isHidden %}
 <li class="{{ item.items ? 'dropdown-submenu' }}">
 	<a class="dropdown-item d-flex justify-content-between align-items-center py-2 px-3 px-lg-4 fs-7 transition-30 {{ item.isActive or item.isChildActive ? 'active' : 'bg-primary-100-hover' }} {{ item.items ? 'dropdown-toggle' : '' }}" {% if item.isActive or item.isChildActive %}aria-current="page"{% endif %} href="{{ item.items ? '#' : item.url }}" {{ item.viewBag.isExternal ? 'target="_blank"' }} {% if item.items %}id="dropdownMenu{{ item.title|replace({' ':'-'}) }}" role="button" aria-expanded="false"{% endif %}>
-		{{ item.title|_ }} 
+		{{ item.title|_ }}
 		{% if item.items %}<i class="bi bi-chevron-down ms-1 fs-8"></i>{% endif %}
 	</a>
 	{% if item.items %}
@@ -59,10 +61,10 @@ code = "main-menu"
                             <i class="bi bi-globe border-start-lg ps-lg-3"></i>
                         </a>
                     	<ul class="dropdown-menu shadow border-0 py-0 py-lg-2 dropdown-menu-end fadeUp" style="min-width:auto;" aria-labelledby="dropdownMenu{{ code|upper }}">
-                    		{% for code, name in locales %}
+                    		{% for site in sitePicker.sites %}
                             <li class="">
-                            	<a class="dropdown-item d-flex justify-content-between align-items-center py-2 px-3 px-lg-4 fs-7 transition-30 {{ code == activeLocale ? 'active' : 'bg-primary-100-hover' }}" href="javascript:;" role="button" aria-expanded="false" name="locale" data-request="onSwitchLocale" data-request-data="locale: '{{ code }}'">
-                            		{{ name }}
+                            	<a class="dropdown-item d-flex justify-content-between align-items-center py-2 px-3 px-lg-4 fs-7 transition-30 {{ this.site.code == site.code ? 'active' : 'bg-primary-100-hover' }}" href="{{ site.url }}" role="button" aria-expanded="false" name="locale">
+                                    {{ site.name }}
                             	</a>
                             </li>
                             {% endfor %}
@@ -87,7 +89,7 @@ code = "main-menu"
             <form class="w-100" action="{{ searchInput.searchPage | page }}?q={{ query | url_encode(true) }}" method="get">
                 <div class="ss-search-form">
                     <div class="ss-search-form__input d-flex align-items-center justify-content-between">
-                        <input class="form-control form-control-lg border-0" name="q" type="text" placeholder="What are you looking for?" 
+                        <input class="form-control form-control-lg border-0" name="q" type="text" placeholder="What are you looking for?"
                                value="{{ searchInput.query }}"
                                autocomplete="off"
                                autofocus
