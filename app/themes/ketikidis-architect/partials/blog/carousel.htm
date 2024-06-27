@@ -2,7 +2,7 @@ description = "Blog Carousel"
 
 [viewBag]
 ==
-{% if post.featured_images.count > 1 %}           
+{% if post.featured_images.count > 1 %}
 <div class="post splide group">
 	<div class="splide__arrows">
 		<button class="splide__arrow splide__arrow--prev w-4 w-md-5 h-4 h-md-5 bg-transparent opacity-0 group-hover-opacity-100 transition-30">
@@ -65,9 +65,11 @@ new Splide( '.post', {
 {% put scripts %}
 <script>
 // Glightbox
-const lightbox = GLightbox({
-    touchNavigation: true,
-    loop: true
+document.addEventListener('DOMContentLoaded', () => {
+	const lightbox = GLightbox({
+		touchNavigation: true,
+		loop: true
+	});
 });
 </script>
 {% endput %}
