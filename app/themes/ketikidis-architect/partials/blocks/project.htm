@@ -12,7 +12,8 @@ description = "Project Block"
                             <div class="px-6 px-lg-4">
                                 <div class="position-relative">
                                     <div class="mb-6">
-                                        <span class="d-block text-uppercase fw-bold text-md-end">{{ data.section_project_overtitle|raw }}</span>
+                                        <span class="d-block text-uppercase fw-bold text-md-end">{{
+                                            data.section_project_overtitle|raw }}</span>
                                         <h2 class="mb-4 display-3 text-md-end">{{ data.section_project_title|raw }}</h2>
                                         {{ data.section_project_desc|raw }}
                                     </div>
@@ -20,65 +21,62 @@ description = "Project Block"
                             </div>
                         </div>
                     </div>
-                    {% if data.section_project_categories is not empty %}
-                        <div class="col-md-5">
-                            <div class="position-relative bg-size-cover bg-position-center h-8 h-md-10 mb-5" style="background-image: url('{{ data.section_project_image|media|resize(450, 1000, { mode: 'crop' }) }}');" data-sal="slide-left" data-sal-duration="2000">
-                                <div class="bg-primary w-6 group-hover-w-7 h-px position-absolute top-25 start-n5 d-none d-md-block z-10 transition-30"></div>
-                            </div>
-                            <div class="" data-sal="slide-up" data-sal-duration="2000">
-                                <span class="d-block text-uppercase fw-bold mb-4">{{ 'Project info'|_ }}</span>
-                                <div class="border px-4 py-3">
-                                    {% if data.section_project_client %}
-                                        <div class="d-flex justify-content-between align-items-center border-bottom py-3">
-                                            <span>{{ 'Client'|_ }}:</span>
-                                            <span class="">{{ data.section_project_client }}</span>
-                                        </div>
-                                    {% endif %}
-                                    {% if data.section_project_categories %}
-                                        <div class="d-flex justify-content-between align-items-center border-bottom py-3">
-                                            <span class="left_info">{{ 'Categories'|_ }}:</span>
-                                            <span>
-                                    {% for category in data.section_project_categories %}{{ category|slug }}{{ not loop.last ? ',' }}{% endfor %}
-                                    </span>
-                                        </div>
-                                    {% endif %}
-                                    {% if data.section_project_date %}
-                                        <div class="d-flex justify-content-between align-items-center border-bottom py-3">
-                                            <span>{{ 'Date'|_ }}:</span>
-                                            <span class="">{{ data.section_project_date|date('j M, Y') }}</span>
-                                        </div>
-                                    {% endif %}
-                                    {% if data.section_project_rating %}
-                                        <div class="d-flex justify-content-between align-items-center border-bottom py-3">
-                                            <span class="">{{ 'Rating'|_ }}:</span>
-                                            <span>
-                                    {% for i in 1..5 %}
-                                        {% set starClass = (data.section_project_rating >= i ? "text-warning" : "opacity-25")  %}
-                                        <i class="bi bi-star-fill ms-1 {{ starClass }}"></i>
-                                    {% endfor %}
-                                    </span>
-                                        </div>
-                                    {% endif %}
-                                    {% if data.section_project_site %}
-                                        <div class="d-flex justify-content-between align-items-center border-bottom py-4">
-                                            <span class="">{{ 'Website'|_ }}:</span>
-                                            <span class=""><a href="{{ data.section_project_link }}">{{ data.section_project_site }}</a></span>
-                                        </div>
-                                    {% endif %}
-                                </div>
+                    <div class="col-md-5">
+                        <div class="position-relative bg-size-cover bg-position-center h-8 h-md-10 mb-5"
+                            style="background-image: url('{{ data.section_project_image|media|resize(450, 1000, { mode: 'crop' }) }}');"
+                            data-sal="slide-left" data-sal-duration="2000">
+                            <div
+                                class="bg-primary w-6 group-hover-w-7 h-px position-absolute top-25 start-n5 d-none d-md-block z-10 transition-30">
                             </div>
                         </div>
-                    {% endif %}
-
+                        {# <div class="" data-sal="slide-up" data-sal-duration="2000">
+                            <span class="d-block text-uppercase fw-bold mb-4">{{ 'Project info'|_ }}</span>
+                            <div class="border px-4 py-3">
+                                {% if data.section_project_client %}
+                                <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+                                    <span>{{ 'Client'|_ }}:</span>
+                                    <span class="">{{ data.section_project_client }}</span>
+                                </div>
+                                {% endif %}
+                                {% if data.section_project_categories %}
+                                <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+                                    <span class="left_info">{{ 'Categories'|_ }}:</span>
+                                    <span>
+                                        {% for category in data.section_project_categories %}{{ category|slug }}{{ not
+                                        loop.last ? ',' }}{% endfor %}
+                                    </span>
+                                </div>
+                                {% endif %}
+                                {% if data.section_project_date %}
+                                <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+                                    <span>{{ 'Date'|_ }}:</span>
+                                    <span class="">{{ data.section_project_date|date('j M, Y') }}</span>
+                                </div>
+                                {% endif %}
+                                {% if data.section_project_rating %}
+                                <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+                                    <span class="">{{ 'Rating'|_ }}:</span>
+                                    <span>
+                                        {% for i in 1..5 %}
+                                        {% set starClass = (data.section_project_rating >= i ? "text-warning" :
+                                        "opacity-25") %}
+                                        <i class="bi bi-star-fill ms-1 {{ starClass }}"></i>
+                                        {% endfor %}
+                                    </span>
+                                </div>
+                                {% endif %}
+                                {% if data.section_project_site %}
+                                <div class="d-flex justify-content-between align-items-center py-4">
+                                    <span class="">{{ 'Website'|_ }}:</span>
+                                    <span class=""><a href="{{ data.section_project_link }}">{{
+                                            data.section_project_site }}</a></span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div> #}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-{% put styles %}
-<style>
-  .border-bottom:last-child {
-    border-bottom: 0!important;
-  }
-</style>
-{% endput %}
