@@ -107,8 +107,8 @@ class Plugin extends PluginBase
     public function registerMailTemplates()
     {
         return [
-            'grofgraf.contactme::emails.message' => 'grofgraf.contactme::emails.message',
-            'grofgraf.contactme::emails.auto-reply' => 'grofgraf.contactme::emails.auto-reply',
+            'grofgraf.contactme::emails.message' => 'Mail template for contact from website',
+            'grofgraf.contactme::emails.auto-reply' => 'Mail template for auto reply',
         ];
     }
 }

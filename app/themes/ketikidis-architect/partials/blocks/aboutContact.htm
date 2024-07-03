@@ -11,23 +11,23 @@ description = "About-Contact Section"
                     <div class="position-absolute top-0 bottom-0 start-0 end-0 w-100 h-100 bg-primary-100 opacity-50"></div>
                     <div class="py-5 position-relative mx-auto">
                         <div class="py-2">
-                            <span class="text-uppercase text-white fs-7">{{ 'Cooperate with us'|_ }}</span>
-                            <h3 class="text-white fs-3 fw-bold mb-0">{{ 'Request A Project'|_ }}</h3>
+                            <span class="fr-text-gray-800 text-uppercase fs-7">{{ 'Cooperate with us'|_ }}</span>
+                            <h3 class="fs-3 fr-text-gray-800 fw-bold mb-0">{{ 'Request A Project'|_ }}</h3>
                         </div>
                         <form action="#" class="" data-request="{{ genericForm }}::onFormSubmit">
                             {{ form_token() }}
                             <div id="{{ genericForm }}_forms_flash"></div>
                             <div class="form-group mb-3">
-                                <input type="text" name="name" class="form-control bg-transparent text-white opacity-75 h-14 px-0 border-top-0 border-start-0 border-end-0 rounded-0 shadow-none" placeholder="{{ 'Name'|_ }}">
+                                <input type="text" name="name" class="form-control bg-transparent opacity-75 h-14 px-0 border-top-0 border-start-0 border-end-0 rounded-0 shadow-none" placeholder="{{ 'Name'|_ }}">
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" name="email" class="form-control bg-transparent text-white opacity-75 h-14 px-0 border-top-0 border-start-0 border-end-0 rounded-0 shadow-none" placeholder="{{ 'Email'|_ }}">
+                                <input type="text" name="email" class="form-control bg-transparent opacity-75 h-14 px-0 border-top-0 border-start-0 border-end-0 rounded-0 shadow-none" placeholder="{{ 'Email'|_ }}">
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" name="subject" class="form-control bg-transparent text-white opacity-75 h-14 px-0 border-top-0 border-start-0 border-end-0 rounded-0 shadow-none" placeholder="{{ 'Subject'|_ }}">
+                                <input type="text" name="subject" class="form-control bg-transparent opacity-75 h-14 px-0 border-top-0 border-start-0 border-end-0 rounded-0 shadow-none" placeholder="{{ 'Subject'|_ }}">
                             </div>
                             <div class="form-group mb-3">
-                                <textarea name="comments" id="" cols="30" rows="5" class="form-control bg-transparent text-white opacity-75 px-0 border-top-0 border-start-0 border-end-0 rounded-0 shadow-none" placeholder="{{ 'Message'|_ }}"></textarea>
+                                <textarea name="comments" id="" cols="30" rows="5" class="form-control bg-transparent opacity-75 px-0 border-top-0 border-start-0 border-end-0 rounded-0 shadow-none" placeholder="{{ 'Message'|_ }}"></textarea>
                             </div>
                             <div class="form-group mb-3 mb-3">
                             {% if (recaptcha_enabled) %}
@@ -55,12 +55,3 @@ description = "About-Contact Section"
         </div>
     </div>
 </section>
-
-{% put styles %}
-<style>
-.about-contact input::placeholder,
-.about-contact textarea::placeholder {
-    color: #ffffff !important;
-}
-</style>
-{% endput %}
