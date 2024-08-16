@@ -11,9 +11,9 @@ enableTagFilter = "never"
 tagPage = "blog/tag"
 tagsPage = "blog/tag"
 ==
+{% set tags = tagList.tags %}
+{% if tags | length %}
 <div class="mt-5 mb-4">
-    {% set tags = tagList.tags %}
-    {% if tags | length %}
     <div class="" id="{{ tagSectionId }}">
         {% for item in tags %}
         {% set postCount = item.posts_count %}
@@ -25,9 +25,5 @@ tagsPage = "blog/tag"
         </a>
         {% endfor %}
     </div>
-    {% else %}
-    <div class="mt-4 me-4">
-    {{ "ginopane.blogtaxonomy::lang.components.tag_list.no_tags_message" | trans }}
-    </div>
-    {% endif %}
 </div>
+{% endif %}

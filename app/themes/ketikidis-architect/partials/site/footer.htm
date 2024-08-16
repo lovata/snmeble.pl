@@ -115,8 +115,8 @@ code = "blog-categories"
     </div>
     <div class="bg-dark-800 py-4">
         <div class="container">
-            <div class="col-md-12 d-md-flex justify-content-center text-white fs-8 opacity-50 mt-3">
-                <p>{{ this.theme.site_name }} © {{ "now"|date("Y") }}.</p> {{ this.theme.site_copyright|raw }}
+            <div class="col-md-12 d-md-flex flex-column justify-content-center text-white fs-8 opacity-50 mt-3">
+                <p class="text-center">{{ this.theme.site_name }} © {{ "now"|date("Y") }}. {{ this.theme.site_copyright|raw }}</p>
             </div>
         </div>
     </div>
@@ -125,7 +125,7 @@ code = "blog-categories"
 {% put styles %}
 <style>
 .cryptedmail:after {
-    content: attr(data-name) "@" attr(data-domain) "." attr(data-tld); 
+    content: attr(data-name) "@" attr(data-domain) "." attr(data-tld);
 }
 </style>
 {% endput %}
